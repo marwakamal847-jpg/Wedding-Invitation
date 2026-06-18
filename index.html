@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelaziz & Omnia Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#faf8f2;
+font-family:'Cinzel',serif;
+overflow-x:hidden;
+color:#8f6b2e;
+}
+
+/* Envelope */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.envelope{
+width:420px;
+height:280px;
+background:#f5efe2;
+position:relative;
+cursor:pointer;
+border-radius:8px;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.flap{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#eadfc7;
+clip-path:polygon(0 0,100% 0,50% 55%);
+transform-origin:top;
+transition:1s;
+}
+
+.seal{
+position:absolute;
+left:50%;
+top:120px;
+transform:translateX(-50%);
+width:70px;
+height:70px;
+border-radius:50%;
+background:gold;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+z-index:2;
+}
+
+.open .flap{
+transform:rotateX(180deg);
+}
+
+.click{
+margin-top:20px;
+letter-spacing:4px;
+}
+
+/* Invitation */
+
+.invitation{
+display:none;
+padding:60px 20px;
+max-width:1100px;
+margin:auto;
+text-align:center;
+}
+
+.card{
+background:white;
+padding:60px;
+border:2px solid #d4af37;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.basmala{
+font-size:34px;
+margin-bottom:30px;
+}
+
+.names{
+font-family:'Great Vibes',cursive;
+font-size:70px;
+margin:30px 0;
+}
+
+.date{
+font-size:30px;
+margin:20px 0;
+}
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.box{
+background:#fffaf0;
+padding:20px;
+border:1px solid #d4af37;
+min-width:120px;
+}
+
+.number{
+font-size:40px;
+font-weight:bold;
+}
+
+.section{
+padding:80px 20px;
+text-align:center;
+}
+
+.gallery{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.gallery img{
+width:260px;
+height:320px;
+object-fit:cover;
+border-radius:12px;
+border:2px solid #d4af37;
+}
+
+.venue{
+font-size:22px;
+line-height:2;
+}
+
+.button{
+display:inline-block;
+padding:15px 30px;
+background:#d4af37;
+color:white;
+text-decoration:none;
+border-radius:50px;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="envelope" id="envelope">
+<div class="flap"></div>
+<div class="seal">♥</div>
+</div>
+
+<p class="click">CLICK TO OPEN</p>
+
+</section>
+
+<section class="invitation" id="invitation">
+
+<div class="card">
+
+<div class="basmala">
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+</div>
+
+<p style="font-size:26px;line-height:2">
+
+وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا
+وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً
+
+</p>
+
+<p style="margin-top:15px">
+QURAN 30:21
+</p>
+
+<div class="names">
+Abdelaziz & Omnia
+</div>
+
+<div class="date">
+18 July 2026
+</div>
+
+<div class="countdown">
+<div class="box"><div id="days" class="number">0</div>Days</div>
+<div class="box"><div id="hours" class="number">0</div>Hours</div>
+<div class="box"><div id="minutes" class="number">0</div>Minutes</div>
+<div class="box"><div id="seconds" class="number">0</div>Seconds</div>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Our Story</h2>
+
+<br><br>
+
+<div class="gallery">
+
+<img src="images/child-abdelaziz.jpg">
+<img src="images/engagement.jpg">
+<img src="images/child-omnia.jpg">
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Venue</h2>
+
+<br>
+
+<div class="venue">
+
+Louvre Heights Royal Hall<br>
+
+Dar El Asleha Wel Zakhira<br>
+
+Salah Salem, Cairo
+
+</div>
+
+<a class="button"
+href="https://maps.app.goo.gl/u73itmHaCa6tPkpy7?g_st=ic"
+target="_blank">
+
+View Location
+
+</a>
+
+</div>
+
+</section>
+
+<script>
+
+document.getElementById("envelope").onclick=function(){
+
+this.classList.add("open");
+
+setTimeout(()=>{
+document.querySelector(".hero").style.display="none";
+document.getElementById("invitation").style.display="block";
+},1000);
+
+}
+
+const targetDate =
+new Date("July 18, 2026 00:00:00").getTime();
+
+setInterval(()=>{
+
+const now=new Date().getTime();
+
+const distance=targetDate-now;
+
+document.getElementById("days").innerHTML=
+Math.floor(distance/(1000*60*60*24));
+
+document.getElementById("hours").innerHTML=
+Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+document.getElementById("minutes").innerHTML=
+Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("seconds").innerHTML=
+Math.floor((distance%(1000*60))/1000);
+
+},1000);
+
+</script>
+
+</body>
+</html>
