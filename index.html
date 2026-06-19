@@ -576,6 +576,80 @@
 
         setInterval(updateWeddingCountdown, 1000);
         updateWeddingCountdown();
+
+
+
+
+
+
+
+
+
+flap.style.transform = 'rotateX(180deg)';
+            setTimeout(() => {
+                wrapper.classList.add('hidden-envelope');
+                document.getElementById('invitationCardMain').classList.add('revealed');
+                document.getElementById('navigationRibbonBar').style.display = 'flex';
+                document.getElementById('gridDetailsRow').style.display = 'grid';
+                document.getElementById('rsvp-section').style.display = 'block';
+            }, 600);
+        }
+
+        function toggleRSVPModal(show) {
+            const overlay = document.getElementById('rsvpPopupOverlay');
+            if (show) {
+                overlay.classList.add('show-popup');
+            } else {
+                overlay.classList.remove('show-popup');
+                document.getElementById('successAlertMessage').style.display = 'none';
+                document.getElementById('weddingFormSubmit').style.display = 'block';
+            }
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            document.getElementById('weddingFormSubmit').style.display = 'none';
+            document.getElementById('successAlertMessage').style.display = 'block';
+            
+            // Close the popup after 2 seconds
+            setTimeout(() => {
+                toggleRSVPModal(false);
+            }, 2000);
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date("July 18, 2026 19:00:00").getTime();
+        function updateWeddingCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('mainCountdownGrid').style.display = 'none';
+                document.getElementById('timerFinishedMessage').style.display = 'block';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timer-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('timer-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('timer-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('timer-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateWeddingCountdown, 1000);
+        updateWeddingCountdown();
+    
+
+
+
+
+
+
+        
     </script>
 </body>
 </html>
