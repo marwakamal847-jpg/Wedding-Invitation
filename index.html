@@ -28,6 +28,11 @@
         body.lang-en { direction: ltr; font-family: 'Cinzel', 'Playfair Display', serif; }
         body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
 
+        /* Prevents the sticky navbar from covering section titles when scrolling */
+        #home-section, #story-section, #date-section, #venue-section, #rsvp-section {
+            scroll-margin-top: 80px;
+        }
+
         .lang-switch {
             position: fixed; top: 20px; left: 20px; z-index: 9999;
             background: #ffffff; padding: 8px 18px; border-radius: 25px;
@@ -80,7 +85,6 @@
         .wedding-date-badge-box i { color: var(--gold-primary); margin-right: 8px; font-size: 1.1rem; }
         .badge-separator { color: var(--gold-primary); font-weight: normal; }
 
-        /* --- تصميم العداد التنازلي الجديد --- */
         .countdown-wrapper { display: flex; flex-direction: column; align-items: center; margin: 15px 0 25px 0; }
         .countdown-container { display: flex; justify-content: center; gap: 12px; direction: ltr !important; }
         .countdown-box { background: #ffffff; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px; min-width: 75px; box-shadow: 0 6px 15px rgba(197, 160, 89, 0.06); display: flex; flex-direction: column; align-items: center; }
@@ -89,7 +93,7 @@
         .countdown-finished { display: none; font-weight: bold; color: var(--gold-dark); font-size: 1.1rem; margin-top: 10px; }
 
         .navigation-ribbon-bar { width: 100%; background: #ffffff; border-top: 1px solid rgba(197, 160, 89, 0.25); border-bottom: 1px solid rgba(197, 160, 89, 0.25); padding: 15px 0; margin: 40px 0; display: none; justify-content: center; gap: 30px; position: sticky; top: 0; z-index: 100; }
-        .nav-item-btn { text-decoration: none; color: var(--text-light); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: all 0.3s ease; }
+        .nav-item-btn { text-decoration: none; color: var(--text-light); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: all 0.3s ease; cursor: pointer; }
         .nav-item-btn i { font-size: 0.9rem; color: var(--gold-primary); }
         .nav-item-btn:hover { color: var(--gold-dark); transform: translateY(-2px); }
 
@@ -145,7 +149,6 @@
             .royal-names-title { font-size: 1.75rem; letter-spacing: 1px; margin: 15px 0; }
             .wedding-date-badge-box { font-size: 1.05rem; padding: 10px; gap: 8px; flex-direction: column; }
             .badge-separator { display: none; }
-            /* تعديل شاشة العداد للهواتف */
             .countdown-container { gap: 8px; }
             .countdown-box { min-width: 60px; padding: 8px 4px; }
             .countdown-num { font-size: 1.25rem; }
@@ -226,7 +229,6 @@
                     </div>
                 </div>
 
-                <!-- مصفوفة العداد التنازلي المحدثة -->
                 <div class="countdown-wrapper">
                     <div class="countdown-container" id="mainCountdownGrid">
                         <div class="countdown-box">
@@ -373,7 +375,7 @@
                 <span class="lang-en">RSVP</span>
             </h2>
             <p class="rsvp-p-info">
-                <span class="lang-ar">يسعدنا ويشورفنا حضوركم ومشاركتكم في هذا اليوم المميز</span>
+                <span class="lang-ar">يسعدنا ويشرفنا حضوركم ومشاركتكم في هذا اليوم المميز</span>
                 <span class="lang-en">We would be honored to celebrate this special day with you</span>
             </p>
             <button class="trigger-rsvp-popup-btn" onclick="toggleRSVPModal(true)">
@@ -420,6 +422,18 @@
     </div>
 
     <script>
+        // JS scroll handler to fix the base href navigation reloading issue
+        document.querySelectorAll('.nav-item-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const destinationTargetId = this.getAttribute('href').substring(1);
+                const destinationElement = document.getElementById(destinationTargetId);
+                if (destinationElement) {
+                    destinationElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
         function toggleLanguage() {
             const body = document.body;
             if (body.classList.contains('lang-ar')) {
@@ -429,7 +443,6 @@
                 body.classList.replace('lang-en', 'lang-ar');
                 document.documentElement.dir = "rtl";
             }
-            // تحديث الأرقام فوراً عند تغيير اللغة
             if(typeof updateWeddingCountdown === "function") {
                 updateWeddingCountdown();
             }
@@ -478,7 +491,7 @@
             }, 2200);
         }
 
-        /* --- نظام العداد التنازلي التفاعلي المترجم --- */
+        /* --- Live Localized Countdown Script --- */
         const targetWeddingDate = new Date("July 18, 2026 19:00:00").getTime();
 
         function updateWeddingCountdown() {
@@ -514,7 +527,6 @@
             document.getElementById('timer-seconds').innerText = convertToLocalizedNumbers(calcSeconds);
         }
 
-        // تشغيل العداد وتكراره كل ثانية واحدة
         updateWeddingCountdown();
         const countdownIntervalTimer = setInterval(updateWeddingCountdown, 1000);
     </script>
