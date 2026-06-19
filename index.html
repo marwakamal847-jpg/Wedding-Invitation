@@ -28,7 +28,6 @@
         body.lang-en { direction: ltr; font-family: 'Cinzel', 'Playfair Display', serif; }
         body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
 
-        /* Prevents the sticky navbar from covering section titles when scrolling */
         #home-section, #story-section, #date-section, #venue-section, #rsvp-section {
             scroll-margin-top: 80px;
         }
@@ -436,7 +435,6 @@
     </div>
 
     <script>
-        // Scroll handler fixing base href links
         document.querySelectorAll('.nav-item-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault(); 
@@ -466,112 +464,71 @@
             const flap = document.getElementById('envelopeFlapAnimation');
             const wrapper = document.getElementById('envelopeWrapper');
             const mainCard = document.getElementById('invitationCardMain');
-            const ribbon = document.getElementById('navigationRibbonBar');
-            const rowDetails = document.getElementById('gridDetailsRow');
-            const rsvpArea = document.getElementById('rsvp-section');
+            const navBar = document.getElementById('navigationRibbonBar');
+            const detailsRow = document.getElementById('gridDetailsRow');
+            const rsvpFooter = document.getElementById('rsvp-section');
 
-            if (flap) flap.style.transform = 'rotateX(180deg)';
-            
+            flap.style.transform = 'rotateX(180deg)';
             setTimeout(() => {
-                if (wrapper) wrapper.classList.add('hidden-envelope');
-                
-                if (mainCard) mainCard.style.display = 'block';
-                if (ribbon) ribbon.style.display = 'flex';
-                if (rowDetails) rowDetails.style.display = 'grid';
-                if (rsvpArea) rsvpArea.style.display = 'block';
-                
-                setTimeout(() => {
-                    if (mainCard) mainCard.classList.add('revealed');
-                }, 50);
+                wrapper.classList.add('hidden-envelope');
+                mainCard.classList.add('revealed');
+                navBar.style.display = 'flex';
+                detailsRow.style.display = 'grid';
+                rsvpFooter.style.display = 'block';
             }, 600);
         }
 
         function toggleRSVPModal(show) {
             const overlay = document.getElementById('rsvpPopupOverlay');
-            if (overlay) {
-                if (show) {
-                    overlay.classList.add('show-popup');
-                } else {
-                    overlay.classList.remove('show-popup');
-                }
+            if (show) {
+                overlay.classList.add('show-popup');
+            } else {
+                overlay.classList.remove('show-popup');
             }
         }
 
         function handleFormSubmission(event) {
-            event.preventDefault(); // يمنع الصفحة من إعادة التحميل بشكل مفاجئ
+            event.preventDefault();
+            const successMsg = document.getElementById('successAlertMessage');
+            const submitBtn = document.getElementById('submitRsvpBtn');
             
-            const form = event.target;
-            const submitButton = document.getElementById('submitRsvpBtn');
-            const alertMsg = document.getElementById('successAlertMessage');
-            
-            // الرابط الفريد الخاص بك من Formspree
-            const formspreeEndpoint = "https://formspree.io/f/mvzneqlp";
+            // Disable button and show success message
+            submitBtn.style.opacity = '0.5';
+            submitBtn.disabled = true;
+            successMsg.style.display = 'block';
 
-            // تعطيل الزر مؤقتاً أثناء الإرسال لمنع النقرات المتكررة بالخطأ
-            if (submitButton) submitButton.disabled = true;
+            // Add logic here to actually send the data (e.g., via Fetch API)
 
-            // تجميع بيانات الاستمارة بشكل منظم
-            const formData = new FormData(form);
-
-            // إرسال البيانات إلى أداة الجمع في الخلفية
-            fetch(formspreeEndpoint, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // إظهار رسالة النجاح الخاصة بك
-                    if (alertMsg) alertMsg.style.display = 'block';
-                    form.reset(); // إعادة تعيين الحقول لتصبح فارغة مجدداً
-                } else {
-                    alert("حدث خطأ ما، يرجى المحاولة مرة أخرى.");
-                    if (submitButton) submitButton.disabled = false;
-                }
-            })
-            .catch(error => {
-                alert("خطأ في الاتصال، يرجى المحاولة مرة أخرى.");
-                if (submitButton) submitButton.disabled = false;
-            });
+            // Close the modal after 2 seconds
+            setTimeout(() => {
+                toggleRSVPModal(false);
+                successMsg.style.display = 'none';
+                submitBtn.style.opacity = '1';
+                submitBtn.disabled = false;
+                document.getElementById('weddingFormSubmit').reset();
+            }, 2000);
         }
 
-        // Countdown Timer Logic
-        const weddingDate = new Date("July 18, 2026 19:00:00").getTime();
-        
         function updateWeddingCountdown() {
+            const targetDate = new Date("July 18, 2026 19:00:00").getTime();
             const now = new Date().getTime();
-            const gap = weddingDate - now;
+            const distance = targetDate - now;
 
-            const grid = document.getElementById('mainCountdownGrid');
-            const message = document.getElementById('timerFinishedMessage');
-
-            if (gap <= 0) {
-                if (grid) grid.style.display = 'none';
-                if (message) message.style.display = 'block';
+            if (distance < 0) {
+                document.getElementById('mainCountdownGrid').style.display = 'none';
+                document.getElementById('timerFinishedMessage').style.display = 'block';
                 return;
             }
 
-            const second = 1000;
-            const minute = second * 60;
-            const hour = minute * 60;
-            const day = hour * 24;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            const d = Math.floor(gap / day);
-            const h = Math.floor((gap % day) / hour);
-            const m = Math.floor((gap % hour) / minute);
-            const s = Math.floor((gap % minute) / second);
-
-            const dEl = document.getElementById('timer-days');
-            const hEl = document.getElementById('timer-hours');
-            const mEl = document.getElementById('timer-minutes');
-            const sEl = document.getElementById('timer-seconds');
-
-            if (dEl) dEl.innerText = d < 10 ? '0' + d : d;
-            if (hEl) hEl.innerText = h < 10 ? '0' + h : h;
-            if (mEl) mEl.innerText = m < 10 ? '0' + m : m;
-            if (sEl) sEl.innerText = s < 10 ? '0' + s : s;
+            document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('timer-minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('timer-seconds').innerText = seconds.toString().padStart(2, '0');
         }
 
         setInterval(updateWeddingCountdown, 1000);
