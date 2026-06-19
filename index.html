@@ -1,69 +1,93 @@
-function executeEnvelopeOpening() {
-            const flap = document.getElementById('envelopeFlapAnimation');
-            const wrapper = document.getElementById('envelopeWrapper');
-            const mainCard = document.getElementById('invitationCardMain');
-            const ribbon = document.getElementById('navigationRibbonBar');
-            const gridDetails = document.getElementById('gridDetailsRow');
-            const rsvpFooter = document.getElementById('rsvp-section');
-
-            // Trigger animation
-            flap.style.transform = 'translateY(-100%)';
-            wrapper.classList.add('hidden-envelope');
-
-            // Reveal content
-            setTimeout(() => {
-                mainCard.classList.add('revealed');
-                ribbon.style.display = 'flex';
-                gridDetails.style.display = 'grid';
-                rsvpFooter.style.display = 'block';
-            }, 600);
-        }
-
-        function toggleRSVPModal(show) {
-            const overlay = document.getElementById('rsvpPopupOverlay');
-            if (show) {
-                overlay.classList.add('show-popup');
-            } else {
-                overlay.classList.remove('show-popup');
+<script>
+    // Scroll handler fixing base href links
+    document.querySelectorAll('.nav-item-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            const destinationTargetId = this.getAttribute('href').substring(1);
+            const destinationElement = document.getElementById(destinationTargetId);
+            if (destinationElement) {
+                destinationElement.scrollIntoView({ behavior: 'smooth' });
             }
+        });
+    });
+
+    function toggleLanguage() {
+        const body = document.body;
+        if (body.classList.contains('lang-ar')) {
+            body.classList.replace('lang-ar', 'lang-en');
+            document.documentElement.dir = "ltr";
+        } else {
+            body.classList.replace('lang-en', 'lang-ar');
+            document.documentElement.dir = "rtl";
+        }
+        if(typeof updateWeddingCountdown === "function") {
+            updateWeddingCountdown();
+        }
+    }
+
+    function executeEnvelopeOpening() {
+        const flap = document.getElementById('envelopeFlapAnimation');
+        const wrapper = document.getElementById('envelopeWrapper');
+        const mainCard = document.getElementById('invitationCardMain');
+        const ribbon = document.getElementById('navigationRibbonBar');
+        const gridDetails = document.getElementById('gridDetailsRow');
+        const rsvpFooter = document.getElementById('rsvp-section');
+
+        // Trigger animation
+        flap.style.transform = 'translateY(-100%)';
+        wrapper.classList.add('hidden-envelope');
+
+        // Reveal content
+        setTimeout(() => {
+            mainCard.classList.add('revealed');
+            ribbon.style.display = 'flex';
+            gridDetails.style.display = 'grid';
+            rsvpFooter.style.display = 'block';
+        }, 600);
+    }
+
+    function toggleRSVPModal(show) {
+        const overlay = document.getElementById('rsvpPopupOverlay');
+        if (show) {
+            overlay.classList.add('show-popup');
+        } else {
+            overlay.classList.remove('show-popup');
+        }
+    }
+
+    function handleFormSubmission(event) {
+        event.preventDefault();
+        const alertMsg = document.getElementById('successAlertMessage');
+        const submitBtn = document.getElementById('submitRsvpBtn');
+        
+        submitBtn.style.display = 'none';
+        alertMsg.style.display = 'block';
+        
+        setTimeout(() => toggleRSVPModal(false), 3000);
+    }
+
+    function updateWeddingCountdown() {
+        const weddingDate = new Date("July 18, 2026 19:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            document.getElementById('mainCountdownGrid').style.display = 'none';
+            document.getElementById('timerFinishedMessage').style.display = 'block';
+            return;
         }
 
-        function handleFormSubmission(event) {
-            event.preventDefault();
-            const alertMsg = document.getElementById('successAlertMessage');
-            const submitBtn = document.getElementById('submitRsvpBtn');
-            
-            // Logic for form submission (e.g., using Formspree or similar)
-            // For now, it shows the success message:
-            submitBtn.style.display = 'none';
-            alertMsg.style.display = 'block';
-            
-            // Optional: Close modal after 3 seconds
-            setTimeout(() => toggleRSVPModal(false), 3000);
-        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Countdown Timer Logic
-        function updateWeddingCountdown() {
-            const weddingDate = new Date("July 18, 2026 19:00:00").getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+        document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
+        document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
+        document.getElementById('timer-minutes').innerText = minutes.toString().padStart(2, '0');
+        document.getElementById('timer-seconds').innerText = seconds.toString().padStart(2, '0');
+    }
 
-            if (distance < 0) {
-                document.getElementById('mainCountdownGrid').style.display = 'none';
-                document.getElementById('timerFinishedMessage').style.display = 'block';
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
-            document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
-            document.getElementById('timer-minutes').innerText = minutes.toString().padStart(2, '0');
-            document.getElementById('timer-seconds').innerText = seconds.toString().padStart(2, '0');
-        }
-
-        setInterval(updateWeddingCountdown, 1000);
-        updateWeddingCountdown();
+    setInterval(updateWeddingCountdown, 1000);
+    updateWeddingCountdown();
+</script>
