@@ -5,74 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
     
-    <base href="/A-O-Wedding-Invitation/">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cinzel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root {
-            --gold-primary: #c5a059;
-            --gold-dark: #aa771c;
-            --bg-cream: #fbf9f5;
-            --text-dark: #4a4135;
-        }
-
-        /* Language Toggle Styling */
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            background: white;
-            padding: 10px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            cursor: pointer;
-            color: var(--gold-dark);
-            font-weight: bold;
-        }
-
-        /* Language visibility classes */
-        body.lang-en .lang-ar { display: none !important; }
-        body.lang-ar .lang-en { display: none !important; }
+        :root { --gold-primary: #c5a059; --bg-cream: #fbf9f5; --text-dark: #4a4135; }
         
-        /* Ensure layout stability */
-        body { background-color: var(--bg-cream); color: var(--text-dark); transition: all 0.3s; }
-        body.lang-en { direction: ltr; font-family: 'Playfair Display', serif; }
+        /* نظام اللغات */
+        body.lang-en { direction: ltr; font-family: 'Cinzel', serif; }
         body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
-
-        /* Existing styles... */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .main-container { width: 100%; max-width: 800px; margin: 20px auto; display: flex; flex-direction: column; align-items: center; }
         
-        /* Add these to your existing styles to match the structure */
-        .envelope-wrapper { width: 100%; max-width: 520px; height: 360px; position: relative; cursor: pointer; margin-bottom: 50px; }
-        /* ... Keep all your previous CSS ... */
+        /* إخفاء وإظهار النصوص حسب اللغة */
+        body.lang-en .lang-ar, body.lang-ar .lang-en { display: none !important; }
+
+        /* أيقونة تبديل اللغة */
+        .lang-switch {
+            position: fixed; top: 20px; left: 20px; z-index: 9999;
+            background: white; padding: 10px 15px; border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;
+            color: var(--gold-primary); border: 1px solid var(--gold-primary);
+        }
+
+        body { background-color: var(--bg-cream); margin: 0; padding: 20px; color: var(--text-dark); transition: 0.3s; }
+        .main-container { width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        
+        /* بقية التنسيقات الأصلية */
+        .invitation-card { background: white; padding: 40px; border: 1px solid var(--gold-primary); text-align: center; }
     </style>
 </head>
 <body class="lang-ar">
 
+    <!-- أيقونة تبديل اللغة -->
     <div class="lang-switch" onclick="toggleLanguage()">
-        <i class="fa-solid fa-earth-americas"></i>
+        <i class="fa-solid fa-earth-americas"></i> 
+        <span class="lang-ar">EN</span>
+        <span class="lang-en">AR</span>
     </div>
 
     <div class="main-container">
-        <div class="click-hint-text">
-            <span class="lang-ar">إضغط لفتح الدعوة</span>
-            <span class="lang-en">Click to Open</span>
-        </div>
-
-        <div class="invitation-card-main" id="invitationCardMain">
-            <div class="card-double-frame">
-                <div class="royal-names-title">ABDELAZIZ & OMNIA</div>
-                <div class="celebrate-txt">
-                    <span class="lang-ar">يسعدنا دعوتكم لمشاركتنا فرحة الزفاف</span>
-                    <span class="lang-en">Joyfully invite you to celebrate their wedding</span>
-                </div>
-            </div>
+        <div class="invitation-card">
+            <h1>
+                <span class="lang-ar">عبد العزيز & أمنية</span>
+                <span class="lang-en">Abdelaziz & Omnia</span>
+            </h1>
+            <p>
+                <span class="lang-ar">يسعدنا دعوتكم لحضور زفافنا</span>
+                <span class="lang-en">We joyfully invite you to our wedding</span>
+            </p>
         </div>
     </div>
 
@@ -81,12 +61,14 @@
             const body = document.body;
             if (body.classList.contains('lang-ar')) {
                 body.classList.replace('lang-ar', 'lang-en');
+                document.documentElement.dir = "ltr";
+                document.documentElement.lang = "en";
             } else {
                 body.classList.replace('lang-en', 'lang-ar');
+                document.documentElement.dir = "rtl";
+                document.documentElement.lang = "ar";
             }
         }
-        
-        // Keep your original executeEnvelopeOpening and other functions here...
     </script>
 </body>
 </html>
