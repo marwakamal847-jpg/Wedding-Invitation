@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
+    
+    <base href="/A-O-Wedding-Invitation/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -26,7 +28,7 @@
         body.lang-en { direction: ltr; font-family: 'Cinzel', 'Playfair Display', serif; }
         body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
 
-        /* تباعد الروابط عند السكرول */
+        /* Prevents the sticky navbar from covering section titles when scrolling */
         #home-section, #story-section, #date-section, #venue-section, #rsvp-section {
             scroll-margin-top: 80px;
         }
@@ -50,30 +52,17 @@
             transition: direction 0.3s ease;
         }
 
-        .main-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 40px; }
+        .main-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
 
-        /* تصفيف المغلف لضمان ظهوره فوراً */
-        .envelope-wrapper { 
-            width: 100%; 
-            width: 480px; 
-            max-width: 90vw;
-            height: 320px; 
-            position: relative; 
-            cursor: pointer; 
-            z-index: 50; 
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
-            margin: 40px auto;
-            display: block;
-            opacity: 1;
-        }
-        .envelope-wrapper.hidden-envelope { opacity: 0; transform: translateY(-60px) scale(0.8); height: 0; margin: 0; pointer-events: none; display: none !important; }
+        .envelope-wrapper { width: 100%; max-width: 520px; height: 360px; position: relative; cursor: pointer; z-index: 50; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 50px; }
+        .envelope-wrapper.hidden-envelope { opacity: 0; transform: translateY(-60px) scale(0.8); height: 0; margin: 0; pointer-events: none; }
         .envelope { width: 100%; height: 100%; background: linear-gradient(135deg, #f1eae0 0%, #dcd1b9 100%); border-radius: 4px; box-shadow: 0 30px 60px rgba(74, 65, 53, 0.3); position: relative; border: 1px solid rgba(197, 160, 89, 0.3); }
-        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #e3dac1 0%, #d5c8aa 100%); clip-path: polygon(0 0, 50% 55%, 100% 0); z-index: 3; transition: transform 0.6s ease; transform-origin: top; }
+        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #e3dac1 0%, #d5c8aa 100%); clip-path: polygon(0 0, 50% 55%, 100% 0); z-index: 3; transition: transform 0.6s ease; }
         .envelope-flap::after { content: 'A & O'; position: absolute; top: 12%; left: 50%; transform: translateX(-50%); font-family: 'Cinzel Decorative', serif; font-size: 1.6rem; color: rgba(146, 114, 56, 0.5); border: 2px solid rgba(146, 114, 56, 0.3); padding: 8px 14px; border-radius: 50%; letter-spacing: 2px; }
         .wax-seal { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 75px; height: 75px; background: radial-gradient(circle, #e9c381 0%, #aa771c 100%); border-radius: 50%; z-index: 4; box-shadow: 0 10px 25px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; border: 2px dashed rgba(255,255,255,0.2); transition: transform 0.3s ease; }
         .envelope-wrapper:hover .wax-seal { transform: translate(-50%, -50%) scale(1.1); }
         .envelope-pockets { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 2; clip-path: polygon(0 100%, 50% 52%, 100% 100%); background: linear-gradient(to top, #fbf9f6 0%, #ede6d8 100%); border-top: 1px solid rgba(197, 160, 89, 0.3); }
-        .click-hint-text { position: absolute; bottom: -50px; width: 100%; text-align: center; font-size: 0.85rem; letter-spacing: 2px; color: var(--gold-dark); text-transform: uppercase; font-weight: 700; animation: bounceUpDown 1.6s infinite; }
+        .click-hint-text { position: absolute; bottom: -40px; width: 100%; text-align: center; font-size: 0.85rem; letter-spacing: 2px; color: var(--gold-dark); text-transform: uppercase; font-weight: 700; animation: bounceUpDown 1.6s infinite; }
 
         .invitation-card-main { width: 100%; max-width: 680px; background: #ffffff; border: 1px solid rgba(197, 160, 89, 0.25); box-shadow: 0 25px 55px rgba(197, 160, 89, 0.12); padding: 40px 30px; border-radius: 4px; text-align: center; display: none; opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
         .invitation-card-main.revealed { display: block; opacity: 1; transform: translateY(0); }
@@ -158,7 +147,7 @@
 
         @media (max-width: 768px) { .grid-details-row { grid-template-columns: 1fr; gap: 25px; } .navigation-ribbon-bar { gap: 12px; flex-wrap: wrap; } }
         @media (max-width: 480px) {
-            body { padding: 10px; } .envelope-wrapper { height: 260px; margin-bottom: 30px; }
+            body { padding: 10px; } .envelope-wrapper { height: 280px; margin-bottom: 30px; }
             .invitation-card-main { padding: 20px 12px; } .card-double-frame { padding: 30px 10px; }
             .basmala-text { font-size: 1.45rem; margin-bottom: 15px; }
             .quran-verse-ar { font-size: 1.1rem; line-height: 1.9; } .quran-verse-en { font-size: 0.78rem; line-height: 1.6; }
@@ -182,7 +171,6 @@
 
     <div class="main-container">
 
-        <!-- واجهة المغلف ستظهر هنا بشكل افتراضي ومؤكد -->
         <div class="envelope-wrapper" id="envelopeWrapper" onclick="executeEnvelopeOpening()">
             <div class="envelope">
                 <div class="envelope-flap" id="envelopeFlapAnimation"></div>
@@ -313,13 +301,13 @@
                 </h3>
                 <div class="triple-photos-frame-container">
                     <div class="photo-frame-item">
-                        <img src="child-abdelaziz.png" alt="Abdelaziz Child">
+                        <img src="child-abdelaziz.jpg.png" alt="Abdelaziz Child">
                     </div>
                     <div class="photo-frame-item" style="width: 78px; height: 98px; transform: translateY(-4px);">
                         <img src="engagement.jpg" alt="Engagement">
                     </div>
                     <div class="photo-frame-item">
-                        <img src="child-omnia.png" alt="Omnia Child">
+                        <img src="child-omnia.jpg.png" alt="Omnia Child">
                     </div>
                 </div>
                 <p class="caption-card-txt">
@@ -448,6 +436,7 @@
     </div>
 
     <script>
+        // Scroll handler fixing base href links
         document.querySelectorAll('.nav-item-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault(); 
@@ -509,17 +498,22 @@
         }
 
         function handleFormSubmission(event) {
-            event.preventDefault();
+            event.preventDefault(); // يمنع الصفحة من إعادة التحميل بشكل مفاجئ
             
             const form = event.target;
             const submitButton = document.getElementById('submitRsvpBtn');
             const alertMsg = document.getElementById('successAlertMessage');
-            const formspreeEndpoint = "https://formspree.io/f/mvzneqlp";
+            
+            // الرابط الفريد الخاص بك من Formspree
+            const formspreeEndpoint = "https://formspree.io/f/mrevnlap";
 
+            // تعطيل الزر مؤقتاً أثناء الإرسال لمنع النقرات المتكررة بالخطأ
             if (submitButton) submitButton.disabled = true;
 
+            // تجميع بيانات الاستمارة بشكل منظم
             const formData = new FormData(form);
 
+            // إرسال البيانات إلى أداة الجمع في الخلفية
             fetch(formspreeEndpoint, {
                 method: 'POST',
                 body: formData,
@@ -529,13 +523,9 @@
             })
             .then(response => {
                 if (response.ok) {
+                    // إظهار رسالة النجاح الخاصة بك
                     if (alertMsg) alertMsg.style.display = 'block';
-                    form.reset();
-                    setTimeout(() => {
-                        toggleRSVPModal(false);
-                        if (alertMsg) alertMsg.style.display = 'none';
-                        if (submitButton) submitButton.disabled = false;
-                    }, 3000);
+                    form.reset(); // إعادة تعيين الحقول لتصبح فارغة مجدداً
                 } else {
                     alert("حدث خطأ ما، يرجى المحاولة مرة أخرى.");
                     if (submitButton) submitButton.disabled = false;
@@ -547,6 +537,7 @@
             });
         }
 
+        // Countdown Timer Logic
         const weddingDate = new Date("July 18, 2026 19:00:00").getTime();
         
         function updateWeddingCountdown() {
