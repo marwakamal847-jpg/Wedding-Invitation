@@ -32,11 +32,18 @@
             scroll-margin-top: 80px;
         }
 
-        /* Standard Flow Switcher: Physically incapable of floating or overlapping content on scroll */
-        .lang-switch {
-            align-self: flex-start; 
-            margin-bottom: 15px;
+        /* Safe Top Header Wrapper: Prevents layout collapsing or shifting off-screen */
+        .top-header-bar {
+            width: 100%;
+            max-width: 520px;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 20px;
             z-index: 9999;
+        }
+
+        /* Native Flow Switcher: Moves seamlessly with the page layout */
+        .lang-switch {
             background: #ffffff; 
             padding: 8px 18px; 
             border-radius: 25px;
@@ -44,7 +51,7 @@
             cursor: pointer;
             color: var(--gold-dark); 
             border: 1px solid var(--gold-primary);
-            display: flex; 
+            display: inline-flex; 
             align-items: center; 
             gap: 8px; 
             font-weight: bold;
@@ -59,7 +66,6 @@
             background-color: var(--bg-cream); color: var(--text-dark); min-height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
             padding: 20px; background-image: radial-gradient(circle at center, #ffffff 0%, #f5eff0 100%);
-            position: relative;
         }
 
         .main-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
@@ -153,6 +159,7 @@
         @media (max-width: 768px) { .grid-details-row { grid-template-columns: 1fr; gap: 25px; } .navigation-ribbon-bar { gap: 12px; flex-wrap: wrap; } }
         @media (max-width: 480px) {
             body { padding: 10px; } 
+            .top-header-bar { max-width: 520px; margin-bottom: 15px; }
             .lang-switch { padding: 6px 14px; font-size: 0.85rem; }
             .main-container { margin-top: 10px; }
             .envelope-wrapper { height: 280px; margin-bottom: 30px; }
@@ -171,13 +178,16 @@
 </head>
 <body class="lang-ar">
 
-    <div class="lang-switch" onclick="toggleLanguage()">
-        <i class="fa-solid fa-earth-americas"></i>
-        <span class="lang-ar">EN</span>
-        <span class="lang-en">AR</span>
-    </div>
-
     <div class="main-container">
+
+        <!-- Securely placed at the absolute top of the container layout -->
+        <div class="top-header-bar">
+            <div class="lang-switch" onclick="toggleLanguage()">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span class="lang-ar">EN</span>
+                <span class="lang-en">AR</span>
+            </div>
+        </div>
 
         <div class="envelope-wrapper" id="envelopeWrapper" onclick="executeEnvelopeOpening()">
             <div class="envelope">
