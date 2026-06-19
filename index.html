@@ -1,189 +1,467 @@
-<!DOCTYPE html>
+can you add a note for us (optional) in RSVP in this code <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding RSVP</title>
-    <style>
-        /* Base Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f6f0;
-            color: #333;
-            text-align: center;
-            padding: 50px 20px;
-            margin: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1 { color: #d4af37; margin-bottom: 10px; }
-        p { color: #666; font-size: 1.1rem; }
-        
-        /* Buttons */
-        .btn {
-            background-color: #d4af37;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn:hover { background-color: #b8952e; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    
+    <base href="/A-O-Wedding-Invitation/">
 
-        /* Modal / Popup Styles */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1000; 
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 450px;
-            text-align: right; /* Right-to-left layout for Arabic */
-            position: relative;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-        .close-btn {
-            position: absolute;
-            top: 15px; left: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #aaa;
-        }
-        .close-btn:hover { color: #333; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* Form Fields */
-        .input-group-field {
-            margin-bottom: 20px;
-        }
-        .input-group-field label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
-        }
-        .input-group-field input, 
-        .input-group-field textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-        .input-group-field textarea {
-            resize: vertical;
-            height: 80px;
-        }
+    <style>
+        :root {
+            --gold-primary: #c5a059;
+            --gold-dark: #aa771c;
+            --gold-light: #fbf5b7;
+            --bg-cream: #fbf9f5;
+            --text-dark: #4a4135;
+            --text-light: #7a6e5d;
+        }
 
-        /* Bilingual sub-labels */
-        .lang-en { display: block; font-size: 0.85rem; color: #888; font-weight: normal; }
-        .lang-ar { display: block; }
-    </style>
+        body.lang-en .lang-ar { display: none !important; }
+        body.lang-ar .lang-en { display: none !important; }
+        
+        body.lang-en { direction: ltr; font-family: 'Cinzel', 'Playfair Display', serif; }
+        body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
+
+        /* Prevents the sticky navbar from covering section titles when scrolling */
+        #home-section, #story-section, #date-section, #venue-section, #rsvp-section {
+            scroll-margin-top: 80px;
+        }
+
+        .lang-switch {
+            position: fixed; top: 20px; left: 20px; z-index: 9999;
+            background: #ffffff; padding: 8px 18px; border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2); cursor: pointer;
+            color: var(--gold-dark); border: 1px solid var(--gold-primary);
+            display: flex; align-items: center; gap: 8px; font-weight: bold;
+            font-family: 'Cinzel', serif; transition: all 0.3s ease;
+        }
+        .lang-switch:hover { background: var(--gold-primary); color: #ffffff; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-cream); color: var(--text-dark); min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            padding: 20px; background-image: radial-gradient(circle at center, #ffffff 0%, #f5eff0 100%);
+            transition: direction 0.3s ease;
+        }
+
+        .main-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+
+        .envelope-wrapper { width: 100%; max-width: 520px; height: 360px; position: relative; cursor: pointer; z-index: 50; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 50px; }
+        .envelope-wrapper.hidden-envelope { opacity: 0; transform: translateY(-60px) scale(0.8); height: 0; margin: 0; pointer-events: none; }
+        .envelope { width: 100%; height: 100%; background: linear-gradient(135deg, #f1eae0 0%, #dcd1b9 100%); border-radius: 4px; box-shadow: 0 30px 60px rgba(74, 65, 53, 0.3); position: relative; border: 1px solid rgba(197, 160, 89, 0.3); }
+        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #e3dac1 0%, #d5c8aa 100%); clip-path: polygon(0 0, 50% 55%, 100% 0); z-index: 3; transition: transform 0.6s ease; }
+        .envelope-flap::after { content: 'A & O'; position: absolute; top: 12%; left: 50%; transform: translateX(-50%); font-family: 'Cinzel Decorative', serif; font-size: 1.6rem; color: rgba(146, 114, 56, 0.5); border: 2px solid rgba(146, 114, 56, 0.3); padding: 8px 14px; border-radius: 50%; letter-spacing: 2px; }
+        .wax-seal { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 75px; height: 75px; background: radial-gradient(circle, #e9c381 0%, #aa771c 100%); border-radius: 50%; z-index: 4; box-shadow: 0 10px 25px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; border: 2px dashed rgba(255,255,255,0.2); transition: transform 0.3s ease; }
+        .envelope-wrapper:hover .wax-seal { transform: translate(-50%, -50%) scale(1.1); }
+        .envelope-pockets { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 2; clip-path: polygon(0 100%, 50% 52%, 100% 100%); background: linear-gradient(to top, #fbf9f6 0%, #ede6d8 100%); border-top: 1px solid rgba(197, 160, 89, 0.3); }
+        .click-hint-text { position: absolute; bottom: -40px; width: 100%; text-align: center; font-size: 0.85rem; letter-spacing: 2px; color: var(--gold-dark); text-transform: uppercase; font-weight: 700; animation: bounceUpDown 1.6s infinite; }
+
+        .invitation-card-main { width: 100%; max-width: 680px; background: #ffffff; border: 1px solid rgba(197, 160, 89, 0.25); box-shadow: 0 25px 55px rgba(197, 160, 89, 0.12); padding: 40px 30px; border-radius: 4px; text-align: center; display: none; opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+        .invitation-card-main.revealed { display: block; opacity: 1; transform: translateY(0); }
+        .card-double-frame { border: 1px solid rgba(197, 160, 89, 0.35); padding: 40px 20px; position: relative; }
+        .card-double-frame::before { content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px; border: 2px double var(--gold-primary); pointer-events: none; }
+        .top-invite-tag { font-size: 0.8rem; letter-spacing: 5px; color: var(--text-light); text-transform: uppercase; margin-bottom: 25px; }
+        .basmala-text { font-size: 1.9rem; color: var(--gold-dark); margin-bottom: 20px; font-family: 'Amiri', serif; font-weight: 700; }
+        .quran-verse-ar { font-family: 'Amiri', serif; font-size: 1.35rem; line-height: 2.2; color: var(--text-dark); margin-bottom: 15px; font-weight: 700; padding: 0 10px; }
+        .quran-verse-en { font-size: 0.9rem; line-height: 1.8; color: var(--text-light); font-style: italic; max-width: 540px; margin: 0 auto 10px auto; font-family: 'Playfair Display', serif; }
+        .quran-ref-tag { font-size: 0.75rem; letter-spacing: 2px; color: var(--gold-primary); font-weight: 700; margin-bottom: 30px; }
+
+        .diamond-divider-line { display: flex; align-items: center; justify-content: center; margin: 25px 0; }
+        .diamond-divider-line::before, .diamond-divider-line::after { content: ''; width: 50px; height: 1px; background: var(--gold-primary); }
+        .diamond-divider-line i { color: var(--gold-primary); margin: 0 12px; font-size: 11px; }
+
+        .royal-names-title { font-family: 'Cinzel Decorative', 'Amiri', serif; font-size: 2.5rem; font-weight: 700; letter-spacing: 2px; background: linear-gradient(to right, #9a7127, #dfb76c, #9a7127); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 20px 0; }
+        .celebrate-txt { font-size: 0.85rem; letter-spacing: 2px; color: var(--text-light); text-transform: uppercase; margin-bottom: 30px; }
+
+        .wedding-date-badge-box { direction: ltr !important; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; border-top: 1px solid var(--gold-primary); border-bottom: 1px solid var(--gold-primary); padding: 12px 20px; font-size: 1.25rem; letter-spacing: 1px; color: var(--text-dark); margin-bottom: 25px; font-weight: 600; gap: 15px; }
+        .wedding-date-badge-box i { color: var(--gold-primary); margin-right: 8px; font-size: 1.1rem; }
+        .badge-separator { color: var(--gold-primary); font-weight: normal; }
+
+        .countdown-wrapper { display: flex; flex-direction: column; align-items: center; margin: 15px 0 25px 0; }
+        .countdown-container { display: flex; justify-content: center; gap: 12px; direction: ltr !important; }
+        .countdown-box { background: #ffffff; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px; min-width: 75px; box-shadow: 0 6px 15px rgba(197, 160, 89, 0.06); display: flex; flex-direction: column; align-items: center; }
+        .countdown-num { font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); font-family: 'Cinzel', 'Amiri', serif; }
+        .countdown-lbl { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; margin-top: 4px; font-weight: 600; }
+        .countdown-finished { display: none; font-weight: bold; color: var(--gold-dark); font-size: 1.1rem; margin-top: 10px; }
+
+        .navigation-ribbon-bar { width: 100%; background: #ffffff; border-top: 1px solid rgba(197, 160, 89, 0.25); border-bottom: 1px solid rgba(197, 160, 89, 0.25); padding: 15px 0; margin: 40px 0; display: none; justify-content: center; gap: 30px; position: sticky; top: 0; z-index: 100; }
+        .nav-item-btn { text-decoration: none; color: var(--text-light); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: all 0.3s ease; cursor: pointer; }
+        .nav-item-btn i { font-size: 0.9rem; color: var(--gold-primary); }
+        .nav-item-btn:hover { color: var(--gold-dark); transform: translateY(-2px); }
+
+        .grid-details-row { width: 100%; display: none; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px; }
+        .details-box-card { background: #ffffff; border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 4px; padding: 30px 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.01); }
+        .column-card-title { font-size: 0.95rem; letter-spacing: 2px; color: var(--gold-dark); text-transform: uppercase; font-weight: 700; margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .column-card-title::after { content: '♥'; font-size: 8px; color: var(--gold-primary); }
+
+        .triple-photos-frame-container { display: flex; justify-content: center; align-items: center; gap: 6px; margin-bottom: 20px; }
+        .photo-frame-item { width: 65px; height: 90px; border: 1px solid var(--gold-primary); padding: 2px; background: #ffffff; }
+        .photo-frame-item img { width: 100%; height: 100%; object-fit: cover; }
+        .caption-card-txt { font-size: 0.85rem; font-style: italic; color: var(--text-light); line-height: 1.6; }
+
+        .calendar-matrix-grid { width: 100%; direction: ltr; }
+        .cal-month-header { font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 15px; color: var(--text-dark); text-transform: uppercase; }
+        .cal-days-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-size: 0.65rem; font-weight: 600; }
+        .cal-day-lbl { color: var(--gold-primary); padding-bottom: 5px; border-bottom: 1px solid #f2ece2; }
+        .cal-date-number { padding: 5px 0; color: var(--text-dark); display: flex; align-items: center; justify-content: center; position: relative; }
+        .cal-date-number.royal-wedding-highlight-day { color: #ffffff; font-weight: 700; z-index: 1; }
+        .cal-date-number.royal-wedding-highlight-day::before { content: ''; position: absolute; width: 22px; height: 22px; background-color: var(--gold-primary); border-radius: 50%; z-index: -1; }
+
+        .wedding-time-highlight { margin-top: 18px; font-weight: bold; color: var(--gold-dark); font-size: 1rem; background: var(--bg-cream); padding: 8px; border-radius: 4px; border: 1px dashed rgba(197, 160, 89, 0.4); }
+
+        .hall-icon-top { font-size: 2rem; color: var(--gold-primary); margin-bottom: 15px; }
+        .hall-main-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
+        .hall-sub-address { font-size: 0.78rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; }
+        .google-maps-redirect-btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: 1px solid var(--gold-primary); padding: 8px 14px; font-size: 0.75rem; color: var(--text-dark); font-weight: 600; transition: all 0.3s ease; }
+        .google-maps-redirect-btn:hover { background: var(--gold-primary); color: #ffffff; }
+
+        .rsvp-footer-action-area { width: 100%; max-width: 500px; text-align: center; margin-top: 15px; padding-bottom: 60px; display: none; }
+        .rsvp-section-h2 { font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: var(--gold-dark); letter-spacing: 3px; margin-bottom: 12px; }
+        .rsvp-p-info { font-size: 0.9rem; color: var(--text-light); margin-bottom: 25px; }
+        .trigger-rsvp-popup-btn { background: linear-gradient(135deg, #aa771c 0%, #dfb76c 50%, #aa771c 100%); color: #ffffff; border: none; padding: 14px 40px; font-size: 0.85rem; letter-spacing: 2px; font-weight: 700; cursor: pointer; border-radius: 3px; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .trigger-rsvp-popup-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(170, 119, 28, 0.3); }
+
+        .rsvp-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 37, 30, 0.6); backdrop-filter: blur(5px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: all 0.4s ease; }
+        .rsvp-popup-overlay.show-popup { opacity: 1; pointer-events: auto; }
+        .popup-form-box { background: #ffffff; border: 2px double var(--gold-primary); border-radius: 4px; padding: 35px 25px; width: 90%; max-width: 420px; text-align: center; position: relative; }
+        .close-popup-icon-btn { position: absolute; top: 15px; left: 15px; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
+        .input-group-field { margin-bottom: 20px; text-align: start; }
+        .input-group-field label { display: block; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dark); font-weight: 600; }
+        .input-group-field input { width: 100%; padding: 12px; border: 1px solid rgba(197, 160, 89, 0.4); outline: none; font-size: 1rem; border-radius: 3px; text-align: start; }
+        .success-alert-message { color: #27ae60; font-weight: bold; margin-top: 15px; display: none; }
+
+        @keyframes bounceUpDown { 0%, 100% { transform: translateY(0); opacity: 0.7; } 50% { transform: translateY(6px); opacity: 1; } }
+
+        @media (max-width: 768px) { .grid-details-row { grid-template-columns: 1fr; gap: 25px; } .navigation-ribbon-bar { gap: 12px; flex-wrap: wrap; } }
+        @media (max-width: 480px) {
+            body { padding: 10px; } .envelope-wrapper { height: 280px; margin-bottom: 30px; }
+            .invitation-card-main { padding: 20px 12px; } .card-double-frame { padding: 30px 10px; }
+            .basmala-text { font-size: 1.45rem; margin-bottom: 15px; }
+            .quran-verse-ar { font-size: 1.1rem; line-height: 1.9; } .quran-verse-en { font-size: 0.78rem; line-height: 1.6; }
+            .royal-names-title { font-size: 1.75rem; letter-spacing: 1px; margin: 15px 0; }
+            .wedding-date-badge-box { font-size: 1.05rem; padding: 10px; gap: 8px; flex-direction: column; }
+            .badge-separator { display: none; }
+            .countdown-container { gap: 8px; }
+            .countdown-box { min-width: 60px; padding: 8px 4px; }
+            .countdown-num { font-size: 1.25rem; }
+            .countdown-lbl { font-size: 0.65rem; }
+        }
+    </style>
 </head>
-<body>
+<body class="lang-ar">
 
-    <div class="container">
-        <h1>دعوة زفاف 🤍 Wedding Invitation</h1>
-        <p>يسعدنا حضوركم ومشاركتنا فرحتنا</p>
-        
-        <button class="btn" id="openModalBtn">نعم، سأحضر بالتأكيد / Yes, I will attend</button>
-    </div>
+    <div class="lang-switch" onclick="toggleLanguage()">
+        <i class="fa-solid fa-earth-americas"></i>
+        <span class="lang-ar">EN</span>
+        <span class="lang-en">AR</span>
+    </div>
 
-    <div id="rsvpModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModalBtn">&times;</span>
-            <h2 style="color: #d4af37; margin-top: 0; text-align: center;">تأكيد الحضور / RSVP</h2>
-            
-            <form id="rsvpForm">
-                <div class="input-group-field">
-                    <label>
-                        <span class="lang-ar">الاسم الكامل</span>
-                        <span class="lang-en">Full Name</span>
-                    </label>
-                    <input type="text" id="fullName" required placeholder="John Doe / محمد أحمد">
-                </div>
+    <div class="main-container">
 
-                <div class="input-group-field">
-                    <label>
-                        <span class="lang-ar">عدد المرافقين</span>
-                        <span class="lang-en">Number of Companions</span>
-                    </label>
-                    <input type="number" id="companions" min="0" value="0" required>
-                </div>
+        <div class="envelope-wrapper" id="envelopeWrapper" onclick="executeEnvelopeOpening()">
+            <div class="envelope">
+                <div class="envelope-flap" id="envelopeFlapAnimation"></div>
+                <div class="wax-seal">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="envelope-pockets"></div>
+            </div>
+            <div class="click-hint-text">
+                <span class="lang-ar">إضغط لفتح الدعوة</span>
+                <span class="lang-en">Click to Open</span>
+                <i class="fa-solid fa-chevron-down" style="display:block; margin-top:5px;"></i>
+            </div>
+        </div>
 
-                <div class="input-group-field">
-                    <label>
-                        <span class="lang-ar">كلمة أو تهنئة للعروسين (اختياري)</span>
-                        <span class="lang-en">A note for us (optional)</span>
-                    </label>
-                    <textarea id="guestNote" placeholder="..."></textarea>
-                </div>
+        <div class="invitation-card-main" id="invitationCardMain">
+            <div class="card-double-frame" id="home-section">
+                
+                <div class="top-invite-tag">
+                    <span class="lang-ar">أنت مدعو</span>
+                    <span class="lang-en">You Are Invited</span>
+                </div>
+                
+                <div class="basmala-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                
+                <div class="quran-verse-ar">
+                    "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ"
+                </div>
+                
+                <div class="quran-verse-en">
+                    "And of His Signs is that He has created spouses for you from your own kind that you may find peace in them and He has set between you love and mercy. Surely there are signs in this for those who reflect."
+                </div>
+                
+                <div class="quran-ref-tag">QUR'AN 30:21</div>
 
-                <button type="submit" class="btn" style="width: 100%;">إرسال / Submit</button>
-            </form>
-        </div>
-    </div>
+                <div class="diamond-divider-line">
+                    <i class="fa-solid fa-star"></i>
+                </div>
 
-    <script>
-        // Modal Control Elements
-        const modal = document.getElementById('rsvpModal');
-        const openBtn = document.getElementById('openModalBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
-        const rsvpForm = document.getElementById('rsvpForm');
+                <div class="royal-names-title">
+                    <span class="lang-ar" style="font-family: 'Amiri', serif;">عبدالعزيز و أمنية</span>
+                    <span class="lang-en">ABDELAZIZ & OMNIA</span>
+                </div>
+                
+                <div class="celebrate-txt">
+                    <span class="lang-ar">يسعدنا دعوتكم لمشاركتنا فرحة الزفاف</span>
+                    <span class="lang-en">Joyfully invite you to celebrate their wedding</span>
+                </div>
 
-        // Open Modal
-        openBtn.addEventListener('click', () => {
-            modal.style.display = 'flex';
-        });
+                <div class="wedding-date-badge-box">
+                    <div>
+                        <i class="fa-regular fa-calendar-days"></i> 
+                        <span class="lang-ar">١٨ يوليو ٢٠٢٦</span>
+                        <span class="lang-en">18 JULY 2026</span>
+                    </div>
+                    <span class="badge-separator">|</span>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <span class="lang-ar">٧:٠٠ مساءً</span>
+                        <span class="lang-en">07:00 PM</span>
+                    </div>
+                </div>
 
-        // Close Modal via 'X'
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+                <div class="countdown-wrapper">
+                    <div class="countdown-container" id="mainCountdownGrid">
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-days">00</span>
+                            <span class="countdown-lbl lang-ar">أيام</span>
+                            <span class="countdown-lbl lang-en">Days</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-hours">00</span>
+                            <span class="countdown-lbl lang-ar">ساعات</span>
+                            <span class="countdown-lbl lang-en">Hours</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-minutes">00</span>
+                            <span class="countdown-lbl lang-ar">دقائق</span>
+                            <span class="countdown-lbl lang-en">Mins</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-seconds">00</span>
+                            <span class="countdown-lbl lang-ar">ثواني</span>
+                            <span class="countdown-lbl lang-en">Secs</span>
+                        </div>
+                    </div>
+                    <div class="countdown-finished" id="timerFinishedMessage">
+                        <span class="lang-ar">دامت الأفراح في دياركم 🎉</span>
+                        <span class="lang-en">The Celebration Has Begun! 🎉</span>
+                    </div>
+                </div>
 
-        // Close Modal when clicking background backdrop
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
+                <div class="diamond-divider-line" style="margin-top: 20px;">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+            </div>
+        </div>
 
-        // Form Submission Handling
-        rsvpForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Stop standard form submission reload
+        <nav class="navigation-ribbon-bar" id="navigationRibbonBar">
+            <a href="#home-section" class="nav-item-btn">
+                <i class="fa-solid fa-house"></i> 
+                <span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span>
+            </a>
+            <a href="#story-section" class="nav-item-btn">
+                <i class="fa-solid fa-heart"></i> 
+                <span class="lang-ar">قصتنا</span><span class="lang-en">Story</span>
+            </a>
+            <a href="#date-section" class="nav-item-btn">
+                <i class="fa-solid fa-calendar"></i> 
+                <span class="lang-ar">التاريخ</span><span class="lang-en">Date</span>
+            </a>
+            <a href="#venue-section" class="nav-item-btn">
+                <i class="fa-solid fa-location-dot"></i> 
+                <span class="lang-ar">المكان</span><span class="lang-en">Venue</span>
+            </a>
+            <a href="#rsvp-section" class="nav-item-btn">
+                <i class="fa-solid fa-envelope"></i> 
+                <span class="lang-ar">الحضور</span><span class="lang-en">RSVP</span>
+            </a>
+        </nav>
 
-            const fullName = document.getElementById('fullName').value;
-            const companions = document.getElementById('companions').value;
-            
-            // Capturing the newly added notes value
-            const note = document.getElementById('guestNote').value;
+        <div class="grid-details-row" id="gridDetailsRow">
+            
+            <div class="details-box-card" id="story-section">
+                <h3 class="column-card-title">
+                    <span class="lang-ar">قصة حبنا</span>
+                    <span class="lang-en">Our Story</span>
+                </h3>
+                <div class="triple-photos-frame-container">
+                    <div class="photo-frame-item">
+                        <img src="child-abdelaziz.jpg.png" alt="Abdelaziz Child">
+                    </div>
+                    <div class="photo-frame-item" style="width: 78px; height: 98px; transform: translateY(-4px);">
+                        <img src="engagement.jpg" alt="Engagement">
+                    </div>
+                    <div class="photo-frame-item">
+                        <img src="child-omnia.jpg.png" alt="Omnia Child">
+                    </div>
+                </div>
+                <p class="caption-card-txt">
+                    <span class="lang-ar">قلبان صغيران، والآن قصة حب جميلة ♥</span>
+                    <span class="lang-en">Two little hearts, now one beautiful story ♥</span>
+                </p>
+            </div>
 
-            // Output submission data to console (can be linked to your database API here)
-            console.log("RSVP Submission Details:", { fullName, companions, note });
+            <div class="details-box-card" id="date-section">
+                <h3 class="column-card-title">
+                    <span class="lang-ar">الموعد</span>
+                    <span class="lang-en">The Date</span>
+                </h3>
+                <div class="calendar-matrix-grid">
+                    <div class="cal-month-header">
+                        <span class="lang-ar">يوليو ٢٠٢٦</span>
+                        <span class="lang-en">JULY 2026</span>
+                    </div>
+                    <div class="cal-days-row">
+                        <div class="cal-day-lbl"><span class="lang-ar">أحد</span><span class="lang-en">SUN</span></div>
+                        <div class="cal-day-lbl"><span class="lang-ar">إثنين</span><span class="lang-en">MON</span></div>
+                        <div class="cal-day-lbl"><span class="lang-ar">ثلاثاء</span><span class="lang-en">TUE</span></div>
+                        <div class="cal-day-lbl"><span class="lang-ar">أربعاء</span><span class="lang-en">WED</span></div>
+                        <div class="cal-day-lbl"><span class="lang-ar">خميس</span><span class="lang-en">THU</span></div>
+                        <div class="cal-day-lbl"><span class="lang-ar">جمعة</span><span class="lang-en">FRI</span></div>
+                        <div class="cal-day-lbl"><span class="lang-ar">سبت</span><span class="lang-en">SAT</span></div>
+                        
+                        <div></div><div></div><div></div>
+                        <div class="cal-date-number">1</div><div class="cal-date-number">2</div><div class="cal-date-number">3</div><div class="cal-date-number">4</div>
+                        <div class="cal-date-number">5</div><div class="cal-date-number">6</div><div class="cal-date-number">7</div><div class="cal-date-number">8</div><div class="cal-date-number">9</div><div class="cal-date-number">10</div><div class="cal-date-number">11</div>
+                        <div class="cal-date-number">12</div><div class="cal-date-number">13</div><div class="cal-date-number">14</div><div class="cal-date-number">15</div><div class="cal-date-number">16</div><div class="cal-date-number">17</div>
+                        <div class="cal-date-number royal-wedding-highlight-day">18</div>
+                        <div class="cal-date-number">19</div><div class="cal-date-number">20</div><div class="cal-date-number">21</div><div class="cal-date-number">22</div><div class="cal-date-number">23</div><div class="cal-date-number">24</div><div class="cal-date-number">25</div>
+                        <div class="cal-date-number">26</div><div class="cal-date-number">27</div><div class="cal-date-number">28</div><div class="cal-date-number">29</div><div class="cal-date-number">30</div><div class="cal-date-number">31</div>
+                    </div>
+                </div>
+                <div class="wedding-time-highlight">
+                    <i class="fa-regular fa-clock" style="margin: 0 5px;"></i>
+                    <span class="lang-ar">الساعة ٧:٠٠ مساءً</span>
+                    <span class="lang-en">Starts at 07:00 PM</span>
+                </div>
+            </div>
 
-            alert('تم تسجيل حضورك بنجاح! شكرًا لك. \nYour RSVP has been submitted successfully!');
-            
-            // Clean up form and hide modal
-            rsvpForm.reset();
-            modal.style.display = 'none';
-        });
-    </script>
-</body>
-</html>
+            <div class="details-box-card" id="venue-section">
+                <h3 class="column-card-title">
+                    <span class="lang-ar">المكان</span>
+                    <span class="lang-en">Venue</span>
+                </h3>
+                <div class="hall-icon-top">🏛</div>
+                <div class="hall-main-name">
+                    <span class="lang-ar">قاعة رويال لوفير هايتس</span>
+                    <span class="lang-en">LOUVRE HEIGHTS ROYAL HALL</span>
+                </div>
+                <div class="hall-sub-address">
+                    <span class="lang-ar">دار الأسلحة والذخيرة<br>صلاح سالم، القاهرة</span>
+                    <span class="lang-en">DAR EL ASLEHA WEL ZAKHIRA<br>SALAH SALEM, CAIRO</span>
+                </div>
+                <a href="https://maps.app.goo.gl/u73itmHaCa6tPkpy7?g_st=ic" target="_blank" class="google-maps-redirect-btn">    
+                    <i class="fa-solid fa-location-dot"></i> 
+                    <span class="lang-ar">عرض على الخريطة</span>
+                    <span class="lang-en">View on Maps</span>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="rsvp-footer-action-area" id="rsvp-section">
+            <h2 class="rsvp-section-h2">
+                <span class="lang-ar">تأكيد الحضور</span>
+                <span class="lang-en">RSVP</span>
+            </h2>
+            <p class="rsvp-p-info">
+                <span class="lang-ar">يسعدنا ويشرفنا حضوركم ومشاركتكم في هذا اليوم المميز</span>
+                <span class="lang-en">We would be honored to celebrate this special day with you</span>
+            </p>
+            <button class="trigger-rsvp-popup-btn" onclick="toggleRSVPModal(true)">
+                <span class="lang-ar">نعم، سأحضر بالتأكيد</span>
+                <span class="lang-en">Yes, I'll Be There</span>
+                <i class="fa-regular fa-envelope"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="rsvp-popup-overlay" id="rsvpPopupOverlay">
+        <div class="popup-form-box">
+            <span class="close-popup-icon-btn" onclick="toggleRSVPModal(false)">×</span>
+            <h3 class="column-card-title" style="margin-bottom: 20px;">
+                <span class="lang-ar">تأكيد حضور الزفاف</span>
+                <span class="lang-en">Wedding RSVP</span>
+            </h3>
+            <form id="weddingFormSubmit" onsubmit="handleFormSubmission(event)">
+                <div class="input-group-field">
+                    <label>
+                        <span class="lang-ar">الإسم الكريم للزائر</span>
+                        <span class="lang-en">Guest Full Name</span>
+                    </label>
+                    <input type="text" required id="guestFullName" placeholder="...">
+                </div>
+                <div class="input-group-field">
+                    <label>
+                        <span class="lang-ar">عدد المرافقين</span>
+                        <span class="lang-en">Number of Companions</span>
+                    </label>
+                    <input type="number" min="0" max="8" value="0" required id="companionsCount">
+                </div>
+                <button type="submit" class="trigger-rsvp-popup-btn" style="width: 100%; justify-content: center;">
+                    <span class="lang-ar">تأكيد الحضور الآن</span>
+                    <span class="lang-en">Confirm Attendance</span>
+                </button>
+                <div class="success-alert-message" id="successAlertMessage">
+                    <span class="lang-ar">تم تسجيل حضوركم بنجاح.. ننتظركم بكل حب!</span>
+                    <span class="lang-en">RSVP Confirmed Successfully. We can't wait to see you!</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JS scroll handler to fix the base href navigation reloading issue
+        document.querySelectorAll('.nav-item-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const destinationTargetId = this.getAttribute('href').substring(1);
+                const destinationElement = document.getElementById(destinationTargetId);
+                if (destinationElement) {
+                    destinationElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-ar')) {
+                body.classList.replace('lang-ar', 'lang-en');
+                document.documentElement.dir = "ltr";
+            } else {
+                body.classList.replace('lang-en', 'lang-ar');
+                document.documentElement.dir = "rtl";
+            }
+            if(typeof updateWeddingCountdown === "function") {
+                updateWeddingCountdown();
+            }
+        }
+
+        function executeEnvelopeOpening() {
+            const flap = document.getElementById('envelopeFlapAnimation');
+            const wrapper = document.getElementById('envelopeWrapper');
+            const mainCard = document.getElementById('invitationCardMain');
+            const ribbon = document.getElementById('navigationRibbonBar');
+            const rowDetails = document.getElementById('gridDetailsRow');
+            const rsvpArea = document.getElementById('rsvp-section');
+
+            flap.style.transform = 'rotateX(180deg)';
+            
+            setTimeout(() => {
+                wrapper.classList.add('hidden-envelope');
+                
+                mainCard.style.display = 'block';
+                ribbon.style.display = 'flex';
+                rowDetails.style.display = 'grid';
+                rsvpArea.style.display = 'block'
