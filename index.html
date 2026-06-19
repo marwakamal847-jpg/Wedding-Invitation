@@ -2,57 +2,59 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
-    
-    <!-- الخطوط -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cinzel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root { --gold-primary: #c5a059; --bg-cream: #fbf9f5; --text-dark: #4a4135; }
         
-        /* نظام اللغات */
+        /* Language System Styling */
         body.lang-en { direction: ltr; font-family: 'Cinzel', serif; }
         body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
-        
-        /* إخفاء وإظهار النصوص حسب اللغة */
         body.lang-en .lang-ar, body.lang-ar .lang-en { display: none !important; }
 
-        /* أيقونة تبديل اللغة */
+        /* Language Toggle Icon (like image_2f3cf9.png) */
         .lang-switch {
             position: fixed; top: 20px; left: 20px; z-index: 9999;
-            background: white; padding: 10px 15px; border-radius: 30px;
+            background: #ffffff; padding: 10px 20px; border-radius: 50px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;
             color: var(--gold-primary); border: 1px solid var(--gold-primary);
+            display: flex; align-items: center; gap: 8px; font-weight: bold;
         }
 
-        body { background-color: var(--bg-cream); margin: 0; padding: 20px; color: var(--text-dark); transition: 0.3s; }
+        /* Rest of your full invitation styles */
+        body { background-color: var(--bg-cream); margin: 0; padding: 20px; color: var(--text-dark); }
         .main-container { width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-        
-        /* بقية التنسيقات الأصلية */
-        .invitation-card { background: white; padding: 40px; border: 1px solid var(--gold-primary); text-align: center; }
+        .invitation-card { background: white; padding: 40px; border: 1px solid var(--gold-primary); text-align: center; width: 100%; margin-bottom: 20px; }
+        .royal-names-title { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 10px; }
     </style>
 </head>
 <body class="lang-ar">
 
-    <!-- أيقونة تبديل اللغة -->
+    <!-- Language Toggle Icon as seen in image_2f3cf9.png -->
     <div class="lang-switch" onclick="toggleLanguage()">
-        <i class="fa-solid fa-earth-americas"></i> 
+        <i class="fa-solid fa-earth-americas"></i>
         <span class="lang-ar">EN</span>
         <span class="lang-en">AR</span>
     </div>
 
     <div class="main-container">
         <div class="invitation-card">
-            <h1>
-                <span class="lang-ar">عبد العزيز & أمنية</span>
-                <span class="lang-en">Abdelaziz & Omnia</span>
-            </h1>
+            <h1 class="royal-names-title">ABDELAZIZ & OMNIA</h1>
             <p>
-                <span class="lang-ar">يسعدنا دعوتكم لحضور زفافنا</span>
-                <span class="lang-en">We joyfully invite you to our wedding</span>
+                <span class="lang-ar">يسعدنا دعوتكم لحضور حفل زفافنا</span>
+                <span class="lang-en">WE JOYFULLY INVITE YOU TO OUR WEDDING</span>
             </p>
+        </div>
+        
+        <!-- هنا يمكنك إضافة بقية محتويات دعوتك السابقة -->
+        <div class="invitation-card">
+            <h3>
+                <span class="lang-ar">التاريخ</span>
+                <span class="lang-en">Date</span>
+            </h3>
+            <p>18 JULY 2026</p>
         </div>
     </div>
 
@@ -62,11 +64,9 @@
             if (body.classList.contains('lang-ar')) {
                 body.classList.replace('lang-ar', 'lang-en');
                 document.documentElement.dir = "ltr";
-                document.documentElement.lang = "en";
             } else {
                 body.classList.replace('lang-en', 'lang-ar');
                 document.documentElement.dir = "rtl";
-                document.documentElement.lang = "ar";
             }
         }
     </script>
