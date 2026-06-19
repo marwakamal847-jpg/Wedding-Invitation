@@ -492,9 +492,8 @@
             const successMsg = document.getElementById('successAlertMessage');
             const submitBtn = document.getElementById('submitRsvpBtn');
             
-            // Disable button and show success message
-            submitBtn.style.opacity = '0.5';
-            submitBtn.disabled = true;
+            // Show success message and disable button during transition
+            submitBtn.style.display = 'none';
             successMsg.style.display = 'block';
 
             // Add logic here to actually send the data (e.g., via Fetch API)
@@ -503,8 +502,7 @@
             setTimeout(() => {
                 toggleRSVPModal(false);
                 successMsg.style.display = 'none';
-                submitBtn.style.opacity = '1';
-                submitBtn.disabled = false;
+                submitBtn.style.display = 'block';
                 document.getElementById('weddingFormSubmit').reset();
             }, 2000);
         }
