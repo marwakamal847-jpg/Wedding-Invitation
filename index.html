@@ -36,7 +36,7 @@
         body {
             background-color: var(--bg-cream);
             color: var(--text-dark);
-            font-family: 'Cinzel', 'Amiri', serif;
+            font-family: 'Amiri', 'Cinzel', serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -269,7 +269,7 @@
         }
 
         .wedding-date-badge-box {
-            direction: ltr !important; 
+            direction: rtl !important; 
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -277,14 +277,14 @@
             border-bottom: 1px solid var(--gold-primary);
             padding: 12px 30px;
             font-size: 1.35rem;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: var(--text-dark);
             margin-bottom: 25px;
             font-weight: 600;
         }
         .wedding-date-badge-box i {
             color: var(--gold-primary);
-            margin-right: 12px;
+            margin-left: 12px;
             font-size: 1.1rem;
         }
 
@@ -345,16 +345,16 @@
         }
 
         .column-card-title {
-            font-size: 0.95rem;
-            letter-spacing: 2px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
             color: var(--gold-dark);
-            text-transform: uppercase;
             font-weight: 700;
             margin-bottom: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
+            font-family: 'Amiri', serif;
         }
         .column-card-title::after {
             content: '♥';
@@ -386,11 +386,10 @@
         }
 
         .caption-card-txt {
-            font-size: 0.85rem;
-            font-style: italic;
+            font-size: 0.9rem;
             color: var(--text-light);
             line-height: 1.6;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Amiri', serif;
         }
 
         /* 📅 مصفوفة النتيجة لشهر يوليو 2026 */
@@ -398,17 +397,18 @@
             width: 100%;
         }
         .cal-month-header {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-bottom: 15px;
             color: var(--text-dark);
+            font-family: 'Amiri', serif;
         }
         .cal-days-row {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 4px;
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
         .cal-day-lbl {
@@ -446,11 +446,11 @@
         }
         .hall-main-name {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 5px;
         }
         .hall-sub-address {
-            font-size: 0.78rem;
+            font-size: 0.85rem;
             color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 20px;
@@ -462,7 +462,7 @@
             text-decoration: none;
             border: 1px solid var(--gold-primary);
             padding: 8px 14px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-dark);
             font-weight: 600;
             transition: all 0.3s ease;
@@ -689,9 +689,9 @@
                 
                 <div class="celebrate-txt">Joyfully invite you to celebrate their wedding</div>
 
-                <!-- تم إصلاح اتجاه ظهور التاريخ بالكامل من اليسار لليمين ليظهر اليوم أولاً -->
+                <!-- تم تعديل التاريخ ليظهر باللغة العربية والاتجاه الصحيح -->
                 <div class="wedding-date-badge-box">
-                    <i class="fa-regular fa-calendar-days"></i> 18 JULY 2026
+                    <i class="fa-regular fa-calendar-days"></i> 18 يوليو 2026
                 </div>
 
                 <div class="diamond-divider-line" style="margin-top: 20px;">
@@ -713,7 +713,7 @@
         <div class="grid-details-row" id="gridDetailsRow">
             
             <div class="details-box-card" id="story-section">
-                <h3 class="column-card-title">Our Story</h3>
+                <h3 class="column-card-title">قصة حبنا</h3>
                 <div class="triple-photos-frame-container">
                     <div class="photo-frame-item">
                         <img src="child-abdelaziz.jpg.png" alt="Abdelaziz Child">
@@ -725,15 +725,16 @@
                         <img src="child-omnia.jpg.png" alt="Omnia Child">
                     </div>
                 </div>
-                <p class="caption-card-txt">Two little hearts, now one beautiful story ♥</p>
+                <p class="caption-card-txt">قلبان صغيران، والآن حكاية واحدة جميلة حافلة بالحب ♥</p>
             </div>
 
+            <!-- تم تحويل النتيجة والبيانات بالكامل للعربية لتتوافق مع اتجاه الصفحة -->
             <div class="details-box-card" id="date-section">
-                <h3 class="column-card-title">The Date</h3>
+                <h3 class="column-card-title">التاريخ</h3>
                 <div class="calendar-matrix-grid">
-                    <div class="cal-month-header">JULY 2026</div>
+                    <div class="cal-month-header">يوليو 2026</div>
                     <div class="cal-days-row">
-                        <div class="cal-day-lbl">SUN</div><div class="cal-day-lbl">MON</div><div class="cal-day-lbl">TUE</div><div class="cal-day-lbl">WED</div><div class="cal-day-lbl">THU</div><div class="cal-day-lbl">FRI</div><div class="cal-day-lbl">SAT</div>
+                        <div class="cal-day-lbl">الأحد</div><div class="cal-day-lbl">الإثنين</div><div class="cal-day-lbl">الثلاثاء</div><div class="cal-day-lbl">الأربعاء</div><div class="cal-day-lbl">الخميس</div><div class="cal-day-lbl">الجمعة</div><div class="cal-day-lbl">السبت</div>
                         
                         <div></div><div></div><div></div>
                         <div class="cal-date-number">1</div><div class="cal-date-number">2</div><div class="cal-date-number">3</div><div class="cal-date-number">4</div>
@@ -744,19 +745,19 @@
                         <div class="cal-date-number">26</div><div class="cal-date-number">27</div><div class="cal-date-number">28</div><div class="cal-date-number">29</div><div class="cal-date-number">30</div><div class="cal-date-number">31</div>
                     </div>
                 </div>
-                <p class="caption-card-txt" style="margin-top: 15px;">Mark the day, celebrate the love</p>
+                <p class="caption-card-txt" style="margin-top: 15px;">احفظوا هذا التاريخ لتشاركونا فرحة العمر</p>
             </div>
 
             <div class="details-box-card" id="venue-section">
-                <h3 class="column-card-title">Venue</h3>
+                <h3 class="column-card-title">القاعة</h3>
                 <div class="hall-icon-top">🏛</div>
                 <div class="hall-main-name">LOUVRE HEIGHTS ROYAL HALL</div>
                 <div class="hall-sub-address">
-                    DAR EL ASLEHA WEL ZAKHIRA<br>
-                    SALAH SALEM, CAIRO
+                    دار الأسلحة والذخيرة<br>
+                    طريق صلاح سالم، القاهرة
                 </div>
                 <a href="https://maps.app.goo.gl/u73itmHaCa6tPkpy7?g_st=ic" target="_blank" class="google-maps-redirect-btn">    
-                    <i class="fa-solid fa-location-dot"></i> View on Maps
+                    <i class="fa-solid fa-location-dot"></i> عرض على الخريطة
                 </a>
             </div>
 
@@ -764,9 +765,9 @@
 
         <div class="rsvp-footer-action-area" id="rsvp-section">
             <h2 class="rsvp-section-h2">RSVP</h2>
-            <p class="rsvp-p-info">We would be honored to celebrate this special day with you</p>
+            <p class="rsvp-p-info">يسعدنا ويشرفنا حضوركم ومشاركتنا هذا اليوم المميز</p>
             <button class="trigger-rsvp-popup-btn" onclick="toggleRSVPModal(true)">
-                Yes, I'll Be There <i class="fa-regular fa-envelope"></i>
+                تأكيد الحضور الآن <i class="fa-regular fa-envelope"></i>
             </button>
         </div>
 
