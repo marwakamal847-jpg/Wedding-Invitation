@@ -26,38 +26,6 @@
             --text-light: #7a6e5d;
         }
 
-        /* 🌍 نظام اللغات (إخفاء وإظهار حسب اللغة المحددة) */
-        body.lang-en .lang-ar { display: none !important; }
-        body.lang-ar .lang-en { display: none !important; }
-        
-        body.lang-en { direction: ltr; font-family: 'Cinzel', 'Playfair Display', serif; }
-        body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
-
-        /* زر التبديل العائم */
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            left: 20px; /* تم وضعه على اليسار ليطابق الصورة */
-            z-index: 9999;
-            background: #ffffff;
-            padding: 8px 18px;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
-            cursor: pointer;
-            color: var(--gold-dark);
-            border: 1px solid var(--gold-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-            font-family: 'Cinzel', serif;
-            transition: all 0.3s ease;
-        }
-        .lang-switch:hover {
-            background: var(--gold-primary);
-            color: #ffffff;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -68,6 +36,7 @@
         body {
             background-color: var(--bg-cream);
             color: var(--text-dark);
+            font-family: 'Cinzel', 'Amiri', serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -75,7 +44,6 @@
             justify-content: flex-start;
             padding: 20px;
             background-image: radial-gradient(circle at center, #ffffff 0%, #f5eff0 100%);
-            transition: direction 0.3s ease;
         }
 
         .main-container {
@@ -176,7 +144,7 @@
             bottom: -40px; width: 100%;
             text-align: center;
             font-size: 0.85rem;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             color: var(--gold-dark);
             text-transform: uppercase;
             font-weight: 700;
@@ -282,7 +250,7 @@
         }
 
         .royal-names-title {
-            font-family: 'Cinzel Decorative', 'Amiri', serif;
+            font-family: 'Cinzel Decorative', serif;
             font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: 2px;
@@ -422,73 +390,261 @@
             font-style: italic;
             color: var(--text-light);
             line-height: 1.6;
+            font-family: 'Playfair Display', serif;
         }
 
         /* 📅 مصفوفة النتيجة لشهر يوليو 2026 */
-        .calendar-matrix-grid { width: 100%; direction: ltr; }
-        .cal-month-header { font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 15px; color: var(--text-dark); text-transform: uppercase; }
-        .cal-days-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-size: 0.65rem; font-weight: 600; }
-        .cal-day-lbl { color: var(--gold-primary); padding-bottom: 5px; border-bottom: 1px solid #f2ece2; }
-        .cal-date-number { padding: 5px 0; color: var(--text-dark); display: flex; align-items: center; justify-content: center; position: relative; }
-        .cal-date-number.royal-wedding-highlight-day { color: #ffffff; font-weight: 700; z-index: 1; }
-        .cal-date-number.royal-wedding-highlight-day::before { content: ''; position: absolute; width: 22px; height: 22px; background-color: var(--gold-primary); border-radius: 50%; z-index: -1; }
+        .calendar-matrix-grid {
+            width: 100%;
+        }
+        .cal-month-header {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        .cal-days-row {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+        .cal-day-lbl {
+            color: var(--gold-primary);
+            padding-bottom: 5px;
+            border-bottom: 1px solid #f2ece2;
+        }
+        .cal-date-number {
+            padding: 5px 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .cal-date-number.royal-wedding-highlight-day {
+            color: #ffffff;
+            font-weight: 700;
+            z-index: 1;
+        }
+        .cal-date-number.royal-wedding-highlight-day::before {
+            content: '';
+            position: absolute;
+            width: 22px; height: 22px;
+            background-color: var(--gold-primary);
+            border-radius: 50%;
+            z-index: -1;
+        }
 
         /* 🏛️ تفاصيل وموقع القاعة */
-        .hall-icon-top { font-size: 2rem; color: var(--gold-primary); margin-bottom: 15px; }
-        .hall-main-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; }
-        .hall-sub-address { font-size: 0.78rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; }
-        .google-maps-redirect-btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: 1px solid var(--gold-primary); padding: 8px 14px; font-size: 0.75rem; color: var(--text-dark); font-weight: 600; transition: all 0.3s ease; }
-        .google-maps-redirect-btn:hover { background: var(--gold-primary); color: #ffffff; }
+        .hall-icon-top {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+        }
+        .hall-main-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .hall-sub-address {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .google-maps-redirect-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            border: 1px solid var(--gold-primary);
+            padding: 8px 14px;
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .google-maps-redirect-btn:hover {
+            background: var(--gold-primary);
+            color: #ffffff;
+        }
 
         /* 💌 قسم تأكيد حضور الضيوف RSVP */
-        .rsvp-footer-action-area { width: 100%; max-width: 500px; text-align: center; margin-top: 15px; padding-bottom: 60px; display: none; }
-        .rsvp-section-h2 { font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: var(--gold-dark); letter-spacing: 3px; margin-bottom: 12px; }
-        .rsvp-p-info { font-size: 0.9rem; color: var(--text-light); margin-bottom: 25px; }
-        .trigger-rsvp-popup-btn { background: linear-gradient(135deg, #aa771c 0%, #dfb76c 50%, #aa771c 100%); color: #ffffff; border: none; padding: 14px 40px; font-size: 0.85rem; letter-spacing: 2px; font-weight: 700; cursor: pointer; border-radius: 3px; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
-        .trigger-rsvp-popup-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(170, 119, 28, 0.3); }
+        .rsvp-footer-action-area {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            margin-top: 15px;
+            padding-bottom: 60px;
+            display: none;
+        }
+        .rsvp-section-h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.4rem;
+            color: var(--gold-dark);
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+        .rsvp-p-info {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+        .trigger-rsvp-popup-btn {
+            background: linear-gradient(135deg, #aa771c 0%, #dfb76c 50%, #aa771c 100%);
+            color: #ffffff;
+            border: none;
+            padding: 14px 40px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .trigger-rsvp-popup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(170, 119, 28, 0.3);
+        }
 
         /* 📌 المنبثق التفاعلي */
-        .rsvp-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 37, 30, 0.6); backdrop-filter: blur(5px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: all 0.4s ease; }
-        .rsvp-popup-overlay.show-popup { opacity: 1; pointer-events: auto; }
-        .popup-form-box { background: #ffffff; border: 2px double var(--gold-primary); border-radius: 4px; padding: 35px 25px; width: 90%; max-width: 420px; text-align: center; position: relative; }
-        .close-popup-icon-btn { position: absolute; top: 15px; left: 15px; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
-        .input-group-field { margin-bottom: 20px; text-align: start; }
-        .input-group-field label { display: block; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dark); font-weight: 600; }
-        .input-group-field input { width: 100%; padding: 12px; border: 1px solid rgba(197, 160, 89, 0.4); outline: none; font-size: 1rem; border-radius: 3px; text-align: start; }
-        .success-alert-message { color: #27ae60; font-weight: bold; margin-top: 15px; display: none; }
+        .rsvp-popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(44, 37, 30, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+        .rsvp-popup-overlay.show-popup {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .popup-form-box {
+            background: #ffffff;
+            border: 2px double var(--gold-primary);
+            border-radius: 4px;
+            padding: 35px 25px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+        }
+        .close-popup-icon-btn {
+            position: absolute;
+            top: 15px; left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .input-group-field {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .input-group-field label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .input-group-field input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            outline: none;
+            font-size: 1rem;
+            border-radius: 3px;
+            text-align: right;
+        }
+        .success-alert-message {
+            color: #27ae60;
+            font-weight: bold;
+            margin-top: 15px;
+            display: none;
+        }
 
         @keyframes bounceUpDown {
             0%, 100% { transform: translateY(0); opacity: 0.7; }
             50% { transform: translateY(6px); opacity: 1; }
         }
 
+        /* 📱 قواعد الموبايل والشاشات الصغيرة الذكية لتعديل مقاس العرض والخطوط */
         @media (max-width: 768px) {
-            .grid-details-row { grid-template-columns: 1fr; gap: 25px; }
+            .grid-details-row {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
             .navigation-ribbon-bar { gap: 12px; flex-wrap: wrap; }
         }
 
         @media (max-width: 480px) {
-            body { padding: 10px; }
-            .envelope-wrapper { height: 280px; margin-bottom: 30px; }
-            .invitation-card-main { padding: 20px 12px; }
-            .card-double-frame { padding: 30px 10px; }
-            .basmala-text { font-size: 1.45rem; margin-bottom: 15px; }
-            .quran-verse-ar { font-size: 1.1rem; line-height: 1.9; }
-            .quran-verse-en { font-size: 0.78rem; line-height: 1.6; }
-            .royal-names-title { font-size: 1.75rem; letter-spacing: 1px; margin: 15px 0; }
-            .celebrate-txt { font-size: 0.75rem; margin-bottom: 20px; }
-            .wedding-date-badge-box { font-size: 1.05rem; padding: 10px 20px; }
+            body {
+                padding: 10px;
+            }
+            .main-container {
+                margin-top: 10px;
+            }
+            .envelope-wrapper {
+                height: 280px;
+                margin-bottom: 30px;
+            }
+            .invitation-card-main {
+                padding: 20px 12px;
+            }
+            .card-double-frame {
+                padding: 30px 10px;
+            }
+            .basmala-text {
+                font-size: 1.45rem;
+                margin-bottom: 15px;
+            }
+            .quran-verse-ar {
+                font-size: 1.1rem;
+                line-height: 1.9;
+            }
+            .quran-verse-en {
+                font-size: 0.78rem;
+                line-height: 1.6;
+            }
+            .royal-names-title {
+                font-size: 1.75rem;
+                letter-spacing: 1px;
+                margin: 15px 0;
+            }
+            .celebrate-txt {
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+                margin-bottom: 20px;
+            }
+            .wedding-date-badge-box {
+                font-size: 1.05rem;
+                padding: 10px 20px;
+                letter-spacing: 1px;
+            }
+            .top-invite-tag {
+                font-size: 0.7rem;
+                letter-spacing: 3px;
+                margin-bottom: 15px;
+            }
+            .diamond-divider-line {
+                margin: 20px 0;
+            }
         }
     </style>
 </head>
-<body class="lang-ar">
-
-    <!-- 🌐 أيقونة تبديل اللغة المستوحاة من الصورة -->
-    <div class="lang-switch" onclick="toggleLanguage()">
-        <i class="fa-solid fa-earth-americas"></i>
-        <span class="lang-ar">EN</span>
-        <span class="lang-en">AR</span>
-    </div>
+<body>
 
     <div class="main-container">
 
@@ -502,8 +658,7 @@
                 <div class="envelope-pockets"></div>
             </div>
             <div class="click-hint-text">
-                <span class="lang-ar">إضغط لفتح الدعوة</span>
-                <span class="lang-en">Click to Open</span>
+                إضغط لفتح الدعوة
                 <i class="fa-solid fa-chevron-down" style="display:block; margin-top:5px;"></i>
             </div>
         </div>
@@ -512,10 +667,7 @@
         <div class="invitation-card-main" id="invitationCardMain">
             <div class="card-double-frame" id="home-section">
                 
-                <div class="top-invite-tag">
-                    <span class="lang-ar">أنت مدعو</span>
-                    <span class="lang-en">You Are Invited</span>
-                </div>
+                <div class="top-invite-tag">You Are Invited</div>
                 
                 <div class="basmala-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
                 
@@ -533,20 +685,13 @@
                     <i class="fa-solid fa-star"></i>
                 </div>
 
-                <div class="royal-names-title">
-                    <span class="lang-ar" style="font-family: 'Amiri', serif;">عبدالعزيز و أمنية</span>
-                    <span class="lang-en">ABDELAZIZ & OMNIA</span>
-                </div>
+                <div class="royal-names-title">ABDELAZIZ & OMNIA</div>
                 
-                <div class="celebrate-txt">
-                    <span class="lang-ar">يسعدنا دعوتكم لمشاركتنا فرحة الزفاف</span>
-                    <span class="lang-en">Joyfully invite you to celebrate their wedding</span>
-                </div>
+                <div class="celebrate-txt">Joyfully invite you to celebrate their wedding</div>
 
+                <!-- تم إصلاح اتجاه ظهور التاريخ بالكامل من اليسار لليمين ليظهر اليوم أولاً -->
                 <div class="wedding-date-badge-box">
-                    <i class="fa-regular fa-calendar-days"></i> 
-                    <span class="lang-ar">18 يوليو 2026</span>
-                    <span class="lang-en">18 JULY 2026</span>
+                    <i class="fa-regular fa-calendar-days"></i> 18 JULY 2026
                 </div>
 
                 <div class="diamond-divider-line" style="margin-top: 20px;">
@@ -557,36 +702,18 @@
 
         <!-- 🔖 شريط تبويبات التنقل السريع -->
         <nav class="navigation-ribbon-bar" id="navigationRibbonBar">
-            <a href="#home-section" class="nav-item-btn">
-                <i class="fa-solid fa-house"></i> 
-                <span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span>
-            </a>
-            <a href="#story-section" class="nav-item-btn">
-                <i class="fa-solid fa-heart"></i> 
-                <span class="lang-ar">قصتنا</span><span class="lang-en">Story</span>
-            </a>
-            <a href="#date-section" class="nav-item-btn">
-                <i class="fa-solid fa-calendar"></i> 
-                <span class="lang-ar">التاريخ</span><span class="lang-en">Date</span>
-            </a>
-            <a href="#venue-section" class="nav-item-btn">
-                <i class="fa-solid fa-location-dot"></i> 
-                <span class="lang-ar">القاعة</span><span class="lang-en">Venue</span>
-            </a>
-            <a href="#rsvp-section" class="nav-item-btn">
-                <i class="fa-solid fa-envelope"></i> 
-                <span class="lang-ar">الحضور</span><span class="lang-en">RSVP</span>
-            </a>
+            <a href="#home-section" class="nav-item-btn"><i class="fa-solid fa-house"></i> الرئيسية</a>
+            <a href="#story-section" class="nav-item-btn"><i class="fa-solid fa-heart"></i> قصة حبنا</a>
+            <a href="#date-section" class="nav-item-btn"><i class="fa-solid fa-calendar"></i> التاريخ</a>
+            <a href="#venue-section" class="nav-item-btn"><i class="fa-solid fa-location-dot"></i> القاعة</a>
+            <a href="#rsvp-section" class="nav-item-btn"><i class="fa-solid fa-envelope"></i> الحضور</a>
         </nav>
 
         <!-- 🔲 شبكة التفاصيل الثلاثية الكبرى -->
         <div class="grid-details-row" id="gridDetailsRow">
             
             <div class="details-box-card" id="story-section">
-                <h3 class="column-card-title">
-                    <span class="lang-ar">قصة حبنا</span>
-                    <span class="lang-en">Our Story</span>
-                </h3>
+                <h3 class="column-card-title">Our Story</h3>
                 <div class="triple-photos-frame-container">
                     <div class="photo-frame-item">
                         <img src="child-abdelaziz.jpg.png" alt="Abdelaziz Child">
@@ -598,30 +725,15 @@
                         <img src="child-omnia.jpg.png" alt="Omnia Child">
                     </div>
                 </div>
-                <p class="caption-card-txt">
-                    <span class="lang-ar">قلبان صغيران، والآن قصة حب جميلة ♥</span>
-                    <span class="lang-en">Two little hearts, now one beautiful story ♥</span>
-                </p>
+                <p class="caption-card-txt">Two little hearts, now one beautiful story ♥</p>
             </div>
 
             <div class="details-box-card" id="date-section">
-                <h3 class="column-card-title">
-                    <span class="lang-ar">التاريخ</span>
-                    <span class="lang-en">The Date</span>
-                </h3>
+                <h3 class="column-card-title">The Date</h3>
                 <div class="calendar-matrix-grid">
-                    <div class="cal-month-header">
-                        <span class="lang-ar">يوليو 2026</span>
-                        <span class="lang-en">JULY 2026</span>
-                    </div>
+                    <div class="cal-month-header">JULY 2026</div>
                     <div class="cal-days-row">
-                        <div class="cal-day-lbl"><span class="lang-ar">أحد</span><span class="lang-en">SUN</span></div>
-                        <div class="cal-day-lbl"><span class="lang-ar">إثنين</span><span class="lang-en">MON</span></div>
-                        <div class="cal-day-lbl"><span class="lang-ar">ثلاثاء</span><span class="lang-en">TUE</span></div>
-                        <div class="cal-day-lbl"><span class="lang-ar">أربعاء</span><span class="lang-en">WED</span></div>
-                        <div class="cal-day-lbl"><span class="lang-ar">خميس</span><span class="lang-en">THU</span></div>
-                        <div class="cal-day-lbl"><span class="lang-ar">جمعة</span><span class="lang-en">FRI</span></div>
-                        <div class="cal-day-lbl"><span class="lang-ar">سبت</span><span class="lang-en">SAT</span></div>
+                        <div class="cal-day-lbl">SUN</div><div class="cal-day-lbl">MON</div><div class="cal-day-lbl">TUE</div><div class="cal-day-lbl">WED</div><div class="cal-day-lbl">THU</div><div class="cal-day-lbl">FRI</div><div class="cal-day-lbl">SAT</div>
                         
                         <div></div><div></div><div></div>
                         <div class="cal-date-number">1</div><div class="cal-date-number">2</div><div class="cal-date-number">3</div><div class="cal-date-number">4</div>
@@ -632,48 +744,29 @@
                         <div class="cal-date-number">26</div><div class="cal-date-number">27</div><div class="cal-date-number">28</div><div class="cal-date-number">29</div><div class="cal-date-number">30</div><div class="cal-date-number">31</div>
                     </div>
                 </div>
-                <p class="caption-card-txt" style="margin-top: 15px;">
-                    <span class="lang-ar">احفظوا هذا اليوم، واحتفلوا بالحب</span>
-                    <span class="lang-en">Mark the day, celebrate the love</span>
-                </p>
+                <p class="caption-card-txt" style="margin-top: 15px;">Mark the day, celebrate the love</p>
             </div>
 
             <div class="details-box-card" id="venue-section">
-                <h3 class="column-card-title">
-                    <span class="lang-ar">المكان</span>
-                    <span class="lang-en">Venue</span>
-                </h3>
+                <h3 class="column-card-title">Venue</h3>
                 <div class="hall-icon-top">🏛</div>
-                <div class="hall-main-name">
-                    <span class="lang-ar">قاعة رويال لوفير هايتس</span>
-                    <span class="lang-en">LOUVRE HEIGHTS ROYAL HALL</span>
-                </div>
+                <div class="hall-main-name">LOUVRE HEIGHTS ROYAL HALL</div>
                 <div class="hall-sub-address">
-                    <span class="lang-ar">دار الأسلحة والذخيرة<br>صلاح سالم، القاهرة</span>
-                    <span class="lang-en">DAR EL ASLEHA WEL ZAKHIRA<br>SALAH SALEM, CAIRO</span>
+                    DAR EL ASLEHA WEL ZAKHIRA<br>
+                    SALAH SALEM, CAIRO
                 </div>
                 <a href="https://maps.app.goo.gl/u73itmHaCa6tPkpy7?g_st=ic" target="_blank" class="google-maps-redirect-btn">    
-                    <i class="fa-solid fa-location-dot"></i> 
-                    <span class="lang-ar">عرض على الخريطة</span>
-                    <span class="lang-en">View on Maps</span>
+                    <i class="fa-solid fa-location-dot"></i> View on Maps
                 </a>
             </div>
 
         </div>
 
         <div class="rsvp-footer-action-area" id="rsvp-section">
-            <h2 class="rsvp-section-h2">
-                <span class="lang-ar">تأكيد الحضور</span>
-                <span class="lang-en">RSVP</span>
-            </h2>
-            <p class="rsvp-p-info">
-                <span class="lang-ar">يسعدنا ويشرفنا حضوركم ومشاركتكم في هذا اليوم المميز</span>
-                <span class="lang-en">We would be honored to celebrate this special day with you</span>
-            </p>
+            <h2 class="rsvp-section-h2">RSVP</h2>
+            <p class="rsvp-p-info">We would be honored to celebrate this special day with you</p>
             <button class="trigger-rsvp-popup-btn" onclick="toggleRSVPModal(true)">
-                <span class="lang-ar">نعم، سأحضر بالتأكيد</span>
-                <span class="lang-en">Yes, I'll Be There</span>
-                <i class="fa-regular fa-envelope"></i>
+                Yes, I'll Be There <i class="fa-regular fa-envelope"></i>
             </button>
         </div>
 
@@ -683,51 +776,23 @@
     <div class="rsvp-popup-overlay" id="rsvpPopupOverlay">
         <div class="popup-form-box">
             <span class="close-popup-icon-btn" onclick="toggleRSVPModal(false)">×</span>
-            <h3 class="column-card-title" style="margin-bottom: 20px;">
-                <span class="lang-ar">تأكيد حضور الزفاف</span>
-                <span class="lang-en">Wedding RSVP</span>
-            </h3>
+            <h3 class="column-card-title" style="margin-bottom: 20px;">تأكيد حضور الزفاف</h3>
             <form id="weddingFormSubmit" onsubmit="handleFormSubmission(event)">
                 <div class="input-group-field">
-                    <label>
-                        <span class="lang-ar">الإسم الكريم للزائر</span>
-                        <span class="lang-en">Guest Full Name</span>
-                    </label>
-                    <input type="text" required id="guestFullName" placeholder="...">
+                    <label>الإسم الكريم للزائر</label>
+                    <input type="text" required id="guestFullName" placeholder="ادخل اسمك الكامل هنا">
                 </div>
                 <div class="input-group-field">
-                    <label>
-                        <span class="lang-ar">عدد المرافقين</span>
-                        <span class="lang-en">Number of Companions</span>
-                    </label>
+                    <label>عدد المرافقين</label>
                     <input type="number" min="0" max="8" value="0" required id="companionsCount">
                 </div>
-                <button type="submit" class="trigger-rsvp-popup-btn" style="width: 100%; justify-content: center;">
-                    <span class="lang-ar">تأكيد الحضور الآن</span>
-                    <span class="lang-en">Confirm Attendance</span>
-                </button>
-                <div class="success-alert-message" id="successAlertMessage">
-                    <span class="lang-ar">تم تسجيل حضوركم بنجاح.. ننتظركم بكل حب!</span>
-                    <span class="lang-en">RSVP Confirmed Successfully. We can't wait to see you!</span>
-                </div>
+                <button type="submit" class="trigger-rsvp-popup-btn" style="width: 100%; justify-content: center;">تأكيد الحضور الآن</button>
+                <div class="success-alert-message" id="successAlertMessage">تم تسجيل حضوركم بنجاح.. ننتظركم بكل حب!</div>
             </form>
         </div>
     </div>
 
     <script>
-        // دالة تبديل اللغة مع الحفاظ على التصميم العام
-        function toggleLanguage() {
-            const body = document.body;
-            if (body.classList.contains('lang-ar')) {
-                body.classList.replace('lang-ar', 'lang-en');
-                document.documentElement.dir = "ltr";
-            } else {
-                body.classList.replace('lang-en', 'lang-ar');
-                document.documentElement.dir = "rtl";
-            }
-        }
-
-        // دالة فتح المظروف (الكود الأصلي)
         function executeEnvelopeOpening() {
             const flap = document.getElementById('envelopeFlapAnimation');
             const wrapper = document.getElementById('envelopeWrapper');
@@ -752,7 +817,6 @@
             }, 600);
         }
 
-        // دوال نافذة الحضور (الكود الأصلي)
         function toggleRSVPModal(shouldOpen) {
             const modal = document.getElementById('rsvpPopupOverlay');
             if(shouldOpen) {
