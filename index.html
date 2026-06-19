@@ -80,6 +80,14 @@
         .wedding-date-badge-box i { color: var(--gold-primary); margin-right: 8px; font-size: 1.1rem; }
         .badge-separator { color: var(--gold-primary); font-weight: normal; }
 
+        /* --- تصميم العداد التنازلي الجديد --- */
+        .countdown-wrapper { display: flex; flex-direction: column; align-items: center; margin: 15px 0 25px 0; }
+        .countdown-container { display: flex; justify-content: center; gap: 12px; direction: ltr !important; }
+        .countdown-box { background: #ffffff; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px; min-width: 75px; box-shadow: 0 6px 15px rgba(197, 160, 89, 0.06); display: flex; flex-direction: column; align-items: center; }
+        .countdown-num { font-size: 1.5rem; font-weight: 700; color: var(--gold-dark); font-family: 'Cinzel', 'Amiri', serif; }
+        .countdown-lbl { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; margin-top: 4px; font-weight: 600; }
+        .countdown-finished { display: none; font-weight: bold; color: var(--gold-dark); font-size: 1.1rem; margin-top: 10px; }
+
         .navigation-ribbon-bar { width: 100%; background: #ffffff; border-top: 1px solid rgba(197, 160, 89, 0.25); border-bottom: 1px solid rgba(197, 160, 89, 0.25); padding: 15px 0; margin: 40px 0; display: none; justify-content: center; gap: 30px; position: sticky; top: 0; z-index: 100; }
         .nav-item-btn { text-decoration: none; color: var(--text-light); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: all 0.3s ease; }
         .nav-item-btn i { font-size: 0.9rem; color: var(--gold-primary); }
@@ -137,6 +145,11 @@
             .royal-names-title { font-size: 1.75rem; letter-spacing: 1px; margin: 15px 0; }
             .wedding-date-badge-box { font-size: 1.05rem; padding: 10px; gap: 8px; flex-direction: column; }
             .badge-separator { display: none; }
+            /* تعديل شاشة العداد للهواتف */
+            .countdown-container { gap: 8px; }
+            .countdown-box { min-width: 60px; padding: 8px 4px; }
+            .countdown-num { font-size: 1.25rem; }
+            .countdown-lbl { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -199,7 +212,6 @@
                     <span class="lang-en">Joyfully invite you to celebrate their wedding</span>
                 </div>
 
-                <!-- تم تحديث الوقت هنا إلى 7:00 مساءً -->
                 <div class="wedding-date-badge-box">
                     <div>
                         <i class="fa-regular fa-calendar-days"></i> 
@@ -211,6 +223,36 @@
                         <i class="fa-regular fa-clock"></i>
                         <span class="lang-ar">٧:٠٠ مساءً</span>
                         <span class="lang-en">07:00 PM</span>
+                    </div>
+                </div>
+
+                <!-- مصفوفة العداد التنازلي المحدثة -->
+                <div class="countdown-wrapper">
+                    <div class="countdown-container" id="mainCountdownGrid">
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-days">00</span>
+                            <span class="countdown-lbl lang-ar">أيام</span>
+                            <span class="countdown-lbl lang-en">Days</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-hours">00</span>
+                            <span class="countdown-lbl lang-ar">ساعات</span>
+                            <span class="countdown-lbl lang-en">Hours</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-minutes">00</span>
+                            <span class="countdown-lbl lang-ar">دقائق</span>
+                            <span class="countdown-lbl lang-en">Mins</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="timer-seconds">00</span>
+                            <span class="countdown-lbl lang-ar">ثواني</span>
+                            <span class="countdown-lbl lang-en">Secs</span>
+                        </div>
+                    </div>
+                    <div class="countdown-finished" id="timerFinishedMessage">
+                        <span class="lang-ar">دامت الأفراح في دياركم 🎉</span>
+                        <span class="lang-en">The Celebration Has Begun! 🎉</span>
                     </div>
                 </div>
 
@@ -235,7 +277,7 @@
             </a>
             <a href="#venue-section" class="nav-item-btn">
                 <i class="fa-solid fa-location-dot"></i> 
-                <span class="lang-ar">القاعة</span><span class="lang-en">Venue</span>
+                <span class="lang-ar">المكان</span><span class="lang-en">Venue</span>
             </a>
             <a href="#rsvp-section" class="nav-item-btn">
                 <i class="fa-solid fa-envelope"></i> 
@@ -295,7 +337,6 @@
                         <div class="cal-date-number">26</div><div class="cal-date-number">27</div><div class="cal-date-number">28</div><div class="cal-date-number">29</div><div class="cal-date-number">30</div><div class="cal-date-number">31</div>
                     </div>
                 </div>
-                <!-- تم تحديث الوقت هنا أيضاً إلى 7:00 مساءً تحت النتيجة -->
                 <div class="wedding-time-highlight">
                     <i class="fa-regular fa-clock" style="margin: 0 5px;"></i>
                     <span class="lang-ar">الساعة ٧:٠٠ مساءً</span>
@@ -332,7 +373,7 @@
                 <span class="lang-en">RSVP</span>
             </h2>
             <p class="rsvp-p-info">
-                <span class="lang-ar">يسعدنا ويشرفنا حضوركم ومشاركتكم في هذا اليوم المميز</span>
+                <span class="lang-ar">يسعدنا ويشورفنا حضوركم ومشاركتكم في هذا اليوم المميز</span>
                 <span class="lang-en">We would be honored to celebrate this special day with you</span>
             </p>
             <button class="trigger-rsvp-popup-btn" onclick="toggleRSVPModal(true)">
@@ -388,6 +429,10 @@
                 body.classList.replace('lang-en', 'lang-ar');
                 document.documentElement.dir = "rtl";
             }
+            // تحديث الأرقام فوراً عند تغيير اللغة
+            if(typeof updateWeddingCountdown === "function") {
+                updateWeddingCountdown();
+            }
         }
 
         function executeEnvelopeOpening() {
@@ -432,6 +477,46 @@
                 toggleRSVPModal(false);
             }, 2200);
         }
+
+        /* --- نظام العداد التنازلي التفاعلي المترجم --- */
+        const targetWeddingDate = new Date("July 18, 2026 19:00:00").getTime();
+
+        function updateWeddingCountdown() {
+            const now = new Date().getTime();
+            const timeDifference = targetWeddingDate - now;
+
+            if (timeDifference <= 0) {
+                clearInterval(countdownIntervalTimer);
+                document.getElementById('mainCountdownGrid').style.display = 'none';
+                document.getElementById('timerFinishedMessage').style.display = 'block';
+                return;
+            }
+
+            const calcDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const calcHours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const calcMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const calcSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            const formatZeroPadding = (num) => String(num).padStart(2, '0');
+            const isArabicSelected = document.body.classList.contains('lang-ar');
+            
+            const convertToLocalizedNumbers = (num) => {
+                const standardZeroPadded = formatZeroPadding(num);
+                if (isArabicSelected) {
+                    return standardZeroPadded.replace(/[0-9]/g, digit => '٠١٢٣٤٥٦٧٨٩'[digit]);
+                }
+                return standardZeroPadded;
+            };
+
+            document.getElementById('timer-days').innerText = convertToLocalizedNumbers(calcDays);
+            document.getElementById('timer-hours').innerText = convertToLocalizedNumbers(calcHours);
+            document.getElementById('timer-minutes').innerText = convertToLocalizedNumbers(calcMinutes);
+            document.getElementById('timer-seconds').innerText = convertToLocalizedNumbers(calcSeconds);
+        }
+
+        // تشغيل العداد وتكراره كل ثانية واحدة
+        updateWeddingCountdown();
+        const countdownIntervalTimer = setInterval(updateWeddingCountdown, 1000);
     </script>
 </body>
 </html>
