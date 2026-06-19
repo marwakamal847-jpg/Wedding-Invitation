@@ -28,35 +28,18 @@
         body.lang-en { direction: ltr; font-family: 'Cinzel', 'Playfair Display', serif; }
         body.lang-ar { direction: rtl; font-family: 'Amiri', serif; }
 
+        /* Prevents the sticky navbar from covering section titles when scrolling */
         #home-section, #story-section, #date-section, #venue-section, #rsvp-section {
             scroll-margin-top: 80px;
         }
 
-        /* Safe Top Header Wrapper: Prevents layout collapsing or shifting off-screen */
-        .top-header-bar {
-            width: 100%;
-            max-width: 520px;
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 20px;
-            z-index: 9999;
-        }
-
-        /* Native Flow Switcher: Moves seamlessly with the page layout */
         .lang-switch {
-            background: #ffffff; 
-            padding: 8px 18px; 
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2); 
-            cursor: pointer;
-            color: var(--gold-dark); 
-            border: 1px solid var(--gold-primary);
-            display: inline-flex; 
-            align-items: center; 
-            gap: 8px; 
-            font-weight: bold;
-            font-family: 'Cinzel', serif; 
-            transition: all 0.3s ease;
+            position: fixed; top: 20px; left: 20px; z-index: 9999;
+            background: #ffffff; padding: 8px 18px; border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2); cursor: pointer;
+            color: var(--gold-dark); border: 1px solid var(--gold-primary);
+            display: flex; align-items: center; gap: 8px; font-weight: bold;
+            font-family: 'Cinzel', serif; transition: all 0.3s ease;
         }
         .lang-switch:hover { background: var(--gold-primary); color: #ffffff; }
 
@@ -66,9 +49,10 @@
             background-color: var(--bg-cream); color: var(--text-dark); min-height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
             padding: 20px; background-image: radial-gradient(circle at center, #ffffff 0%, #f5eff0 100%);
+            transition: direction 0.3s ease;
         }
 
-        .main-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
+        .main-container { width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
 
         .envelope-wrapper { width: 100%; max-width: 520px; height: 360px; position: relative; cursor: pointer; z-index: 50; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 50px; }
         .envelope-wrapper.hidden-envelope { opacity: 0; transform: translateY(-60px) scale(0.8); height: 0; margin: 0; pointer-events: none; }
@@ -158,11 +142,7 @@
 
         @media (max-width: 768px) { .grid-details-row { grid-template-columns: 1fr; gap: 25px; } .navigation-ribbon-bar { gap: 12px; flex-wrap: wrap; } }
         @media (max-width: 480px) {
-            body { padding: 10px; } 
-            .top-header-bar { max-width: 520px; margin-bottom: 15px; }
-            .lang-switch { padding: 6px 14px; font-size: 0.85rem; }
-            .main-container { margin-top: 10px; }
-            .envelope-wrapper { height: 280px; margin-bottom: 30px; }
+            body { padding: 10px; } .envelope-wrapper { height: 280px; margin-bottom: 30px; }
             .invitation-card-main { padding: 20px 12px; } .card-double-frame { padding: 30px 10px; }
             .basmala-text { font-size: 1.45rem; margin-bottom: 15px; }
             .quran-verse-ar { font-size: 1.1rem; line-height: 1.9; } .quran-verse-en { font-size: 0.78rem; line-height: 1.6; }
@@ -178,16 +158,13 @@
 </head>
 <body class="lang-ar">
 
-    <div class="main-container">
+    <div class="lang-switch" onclick="toggleLanguage()">
+        <i class="fa-solid fa-earth-americas"></i>
+        <span class="lang-ar">EN</span>
+        <span class="lang-en">AR</span>
+    </div>
 
-        <!-- Securely placed at the absolute top of the container layout -->
-        <div class="top-header-bar">
-            <div class="lang-switch" onclick="toggleLanguage()">
-                <i class="fa-solid fa-earth-americas"></i>
-                <span class="lang-ar">EN</span>
-                <span class="lang-en">AR</span>
-            </div>
-        </div>
+    <div class="main-container">
 
         <div class="envelope-wrapper" id="envelopeWrapper" onclick="executeEnvelopeOpening()">
             <div class="envelope">
@@ -445,6 +422,7 @@
     </div>
 
     <script>
+        // JS scroll handler to fix the base href navigation reloading issue
         document.querySelectorAll('.nav-item-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault(); 
@@ -513,6 +491,7 @@
             }, 2200);
         }
 
+        /* --- Live Localized Countdown Script --- */
         const targetWeddingDate = new Date("July 18, 2026 19:00:00").getTime();
 
         function updateWeddingCountdown() {
