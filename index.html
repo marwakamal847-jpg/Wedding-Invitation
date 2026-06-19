@@ -405,26 +405,25 @@
                         <span class="lang-ar">الإسم الكريم للزائر</span>
                         <span class="lang-en">Guest Full Name</span>
                     </label>
-                    <input type="text" required id="guestFullName" placeholder="...">
+                    <input type="text" required id="guestFullName" name="Guest Name" placeholder="...">
                 </div>
                 <div class="input-group-field">
                     <label>
                         <span class="lang-ar">عدد المرافقين</span>
                         <span class="lang-en">Number of Companions</span>
                     </label>
-                    <input type="number" min="0" max="8" value="0" required id="companionsCount">
+                    <input type="number" min="0" max="8" value="0" required id="companionsCount" name="Companions Count">
                 </div>
                 
-                <!-- OPTIONAL NOTE FIELD -->
                 <div class="input-group-field">
                     <label>
                         <span class="lang-ar">ملاحظة أو تهنئة (اختياري)</span>
                         <span class="lang-en">Note or Wishes (Optional)</span>
                     </label>
-                    <textarea id="guestNote" rows="3" placeholder="..."></textarea>
+                    <textarea id="guestNote" name="Guest Note" rows="3" placeholder="..."></textarea>
                 </div>
 
-                <button type="submit" class="trigger-rsvp-popup-btn" style="width: 100%; justify-content: center;">
+                <button type="submit" id="submitRsvpBtn" class="trigger-rsvp-popup-btn" style="width: 100%; justify-content: center;">
                     <span class="lang-ar">تأكيد الحضور الآن</span>
                     <span class="lang-en">Confirm Attendance</span>
                 </button>
@@ -499,9 +498,43 @@
         }
 
         function handleFormSubmission(event) {
-            event.preventDefault();
+            event.preventDefault(); // يمنع الصفحة من إعادة التحميل بشكل مفاجئ
+            
+            const form = event.target;
+            const submitButton = document.getElementById('submitRsvpBtn');
             const alertMsg = document.getElementById('successAlertMessage');
-            if (alertMsg) alertMsg.style.display = 'block';
+            
+            // الرابط الفريد الخاص بك من Formspree
+            const formspreeEndpoint = "https://formspree.io/f/mrevnlap";
+
+            // تعطيل الزر مؤقتاً أثناء الإرسال لمنع النقرات المتكررة بالخطأ
+            if (submitButton) submitButton.disabled = true;
+
+            // تجميع بيانات الاستمارة بشكل منظم
+            const formData = new FormData(form);
+
+            // إرسال البيانات إلى أداة الجمع في الخلفية
+            fetch(formspreeEndpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // إظهار رسالة النجاح الخاصة بك
+                    if (alertMsg) alertMsg.style.display = 'block';
+                    form.reset(); // إعادة تعيين الحقول لتصبح فارغة مجدداً
+                } else {
+                    alert("حدث خطأ ما، يرجى المحاولة مرة أخرى.");
+                    if (submitButton) submitButton.disabled = false;
+                }
+            })
+            .catch(error => {
+                alert("خطأ في الاتصال، يرجى المحاولة مرة أخرى.");
+                if (submitButton) submitButton.disabled = false;
+            });
         }
 
         // Countdown Timer Logic
